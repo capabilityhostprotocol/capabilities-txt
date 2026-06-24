@@ -1,5 +1,6 @@
 .DS_Store
 .vercel
+.chp/
 __pycache__/
 *.pyc
 node_modules/
