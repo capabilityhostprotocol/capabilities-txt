@@ -1,0 +1,551 @@
+# capabilities.txt
+
+> The capability surface capabilityhostprotocol.com declares — named, versioned, governed, evidence-wrapped units an agent can discover and invoke. A discovery sibling to robots.txt and llms.txt, for the agentic web.
+>
+> Structured form: https://capabilityhostprotocol.com/.well-known/capabilities.json
+> Proposal: https://capabilityhostprotocol.com/capabilities-txt
+> Invocation, governance, and evidence are defined by the Capability Host Protocol: https://capabilityhostprotocol.com
+
+## agents
+
+### AsyncAPI (chp.adapters.asyncapi)
+
+- chp.adapters.asyncapi.describe_channel (v0.1.0) — Describe a single channel. Schema content never in evidence.
+- chp.adapters.asyncapi.list_channels (v0.1.0) — List channels defined in the loaded AsyncAPI spec.
+- chp.adapters.asyncapi.load_spec (v0.1.0) — Parse and load an AsyncAPI spec document. Spec content never in evidence.
+- chp.adapters.asyncapi.publish (v0.1.0) — Publish a message to a channel. Message payload never in evidence.
+
+### Composition (chp.adapters.composition)
+
+- chp.adapters.composition.define (v1.0.0) — Register a named workflow (sequence of capability invocations).
+- chp.adapters.composition.get (v1.0.0) — Get a workflow definition by name.
+- chp.adapters.composition.list (v1.0.0) — List all registered workflows.
+- chp.adapters.composition.run (v1.0.0) — Execute a registered workflow by name.
+
+### Conformance (chp.adapters.conformance)
+
+- chp.adapters.conformance.check_adapter (v1.0.0) — Runtime introspection of a loaded adapter — checks schema, version, and metadata completeness.
+- chp.adapters.conformance.check_all (v1.0.0) — Check all loaded adapters for violations and return a ranked summary.
+- chp.adapters.conformance.check_source (v1.0.0) — Run static AST analysis on an adapter source file and report violations.
+- chp.adapters.conformance.check_staged (v1.0.0) — Check staged Python files against the active dev session baseline. Returns new violations only — existing baseline violations are not re-flagged.
+- chp.adapters.conformance.close_dev_session (v1.0.0) — Close the active dev session: run final conformance scan, compare vs baseline, delete session state.
+- chp.adapters.conformance.open_dev_session (v1.0.0) — Open a tracked dev session: validate Radicle issue, snapshot baseline conformance, create plan, write active-session state.
+- chp.adapters.conformance.policy_check (v1.0.0) — Check a commit message for the Radicle issue reference policy (rad:XXXXXXX).
+- chp.adapters.conformance.report_violations (v1.0.0) — Auto-open Radicle issues for adapters with conformance violations. Deduplicates against existing open issues.
+
+### Delegation (chp.adapters.delegation)
+
+- chp.adapters.delegation.accept (v0.1.0) — Accept a pending delegation. Emits delegation_accepted.
+- chp.adapters.delegation.complete (v0.1.0)
+- chp.adapters.delegation.create (v0.1.0)
+- chp.adapters.delegation.reject (v0.1.0) — Reject a delegation with a stated reason. Emits delegation_rejected.
+
+### Organization (chp.adapters.organization)
+
+- chp.adapters.organization.get_person (v0.1.0) — Look up a person by ID. Returns name, title, department; email never in evidence.
+- chp.adapters.organization.get_team (v0.1.0) — Look up a team by ID. Returns name, department, lead, member count.
+- chp.adapters.organization.list_members (v0.1.0) — List org members filtered by department or team.
+- chp.adapters.organization.list_reports (v0.1.0) — List direct or recursive reports for a manager.
+- chp.adapters.organization.org_path (v0.1.0) — Get the reporting chain from the root to a given person.
+
+### Planning (chp.adapters.planning)
+
+- chp.adapters.planning.create_plan (v0.1.0)
+- chp.adapters.planning.reflect (v0.1.0)
+- chp.adapters.planning.revise (v0.1.0)
+- chp.adapters.planning.step_update (v0.1.0)
+
+### RPA (chp.adapters.rpa)
+
+- chp.adapters.rpa.click (v0.1.0) — Click a page element by CSS selector.
+- chp.adapters.rpa.extract_text (v0.1.0) — Extract visible text from page or a selector. Text content never in evidence.
+- chp.adapters.rpa.fill (v0.1.0) — Fill an input element. Fill value never in evidence.
+- chp.adapters.rpa.navigate (v0.1.0) — Navigate the browser to a URL.
+- chp.adapters.rpa.screenshot (v0.1.0) — Capture the current page as PNG. Binary data never in evidence.
+
+### Safety (chp.adapters.safety)
+
+- chp.adapters.safety.assess (v0.1.0)
+- chp.adapters.safety.report (v0.1.0)
+
+## ai
+
+### Evaluation (chp.adapters.evaluation)
+
+- chp.adapters.evaluation.get_result (v0.1.0) — Retrieve a past evaluation result by result ID.
+- chp.adapters.evaluation.list_evals (v0.1.0) — List registered evaluation rubrics.
+- chp.adapters.evaluation.register_eval (v0.1.0) — Register an evaluation rubric with named criteria.
+- chp.adapters.evaluation.run_eval (v0.1.0) — Run a registered rubric against inputs. Inputs and expected NEVER in evidence.
+
+### HuggingFace (chp.adapters.huggingface)
+
+- chp.adapters.huggingface.apply_adapter (v1.0.0)
+- chp.adapters.huggingface.cache_info (v1.0.0) — Scan the local HuggingFace cache and return a storage summary by artifact for governance and quota management.
+- chp.adapters.huggingface.call_space (v1.0.0)
+- chp.adapters.huggingface.classify_image (v1.0.0)
+- chp.adapters.huggingface.dataset_preview (v1.0.0)
+- chp.adapters.huggingface.embed (v1.0.0)
+- chp.adapters.huggingface.evaluate (v1.0.0)
+- chp.adapters.huggingface.faiss_index (v1.0.0)
+- chp.adapters.huggingface.finetune (v1.0.0)
+- chp.adapters.huggingface.generate_image (v1.0.0)
+- chp.adapters.huggingface.leaderboard_scores (v1.0.0)
+- chp.adapters.huggingface.list_collections (v1.0.0) — List HuggingFace Hub Collections — curated groupings of models and datasets. Enables agents to navigate thematic clusters (e.g. 
+- chp.adapters.huggingface.load_dataset (v1.0.0)
+- chp.adapters.huggingface.model_card (v1.0.0)
+- chp.adapters.huggingface.pull (v1.0.0) — Download any HuggingFace Hub artifact (model, dataset, tokenizer) to local cache via snapshot_download.
+- chp.adapters.huggingface.pull_for_local_llm (v1.0.0)
+- chp.adapters.huggingface.quantize_to_gguf (v1.0.0)
+- chp.adapters.huggingface.run_pipeline (v1.0.0)
+- chp.adapters.huggingface.search_datasets (v1.0.0) — Search HuggingFace Hub for datasets by task, sort, and filter. Symmetric to search_models — enables agents to discover datasets before loading them.
+- chp.adapters.huggingface.search_models (v1.0.0)
+- chp.adapters.huggingface.search_spaces (v1.0.0) — Search HuggingFace Hub for Spaces (Gradio/Streamlit apps) by SDK, sort, and filter. Precondition for call_space discovery.
+- chp.adapters.huggingface.tokenize (v1.0.0) — Encode text to token IDs or decode token IDs to text using a fast HuggingFace tokenizer. No full model load required.
+- chp.adapters.huggingface.transcribe_audio (v1.0.0)
+
+### LLM Tool-Calling Bridge (chp.adapters.llm)
+
+- chp.adapters.llm.call_tool (v1.0.0) — Invoke a CHP capability by its sanitized LLM tool name.
+- chp.adapters.llm.list_tools (v1.0.0) — List CHP capabilities as LLM tool definitions.
+
+### LocalLLM (chp.adapters.local_llm)
+
+- chp.adapters.local_llm.chat (v1.0.0) — Multi-turn chat with message history. Messages are NOT recorded in evidence.
+- chp.adapters.local_llm.generate (v1.0.0) — Single-turn text generation. Prompt and completion are NOT recorded in evidence.
+- chp.adapters.local_llm.list_models (v1.0.0) — List models available in the local LLM backend.
+- chp.adapters.local_llm.model_info (v1.0.0) — Get metadata for a specific model (parameter count, context length, quantization).
+
+### Memory (chp.adapters.memory)
+
+- chp.adapters.memory.delete (v1.0.0) — Delete a key from scoped agent memory.
+- chp.adapters.memory.get (v1.0.0) — Read a value from scoped agent memory.
+- chp.adapters.memory.list (v1.0.0) — List all keys in a memory scope.
+- chp.adapters.memory.set (v1.0.0) — Write or update a value in scoped agent memory.
+
+### MLX (chp.adapters.mlx)
+
+- chp.adapters.mlx.chat (v1.0.0)
+- chp.adapters.mlx.generate (v1.0.0)
+- chp.adapters.mlx.list_models (v1.0.0) — List models served by the local mlx_lm server (OpenAI /v1/models), via chp.adapters.http.
+- chp.adapters.mlx.start_server (v1.0.0)
+- chp.adapters.mlx.status (v1.0.0)
+- chp.adapters.mlx.stop_server (v1.0.0) — Stop the local mlx_lm server running on a port (SIGTERM the tracked pid).
+
+### Scout (chp.adapters.scout)
+
+- chp.adapters.scout.query (v1.0.0)
+
+### SGLang (chp.adapters.sglang)
+
+- chp.adapters.sglang.chat (v1.0.0)
+- chp.adapters.sglang.generate (v1.0.0)
+- chp.adapters.sglang.list_models (v1.0.0) — List models served by the local SGLang server (OpenAI /v1/models), via chp.adapters.http.
+
+### Smolagents (chp.adapters.smolagents)
+
+- chp.adapters.smolagents.run (v1.0.0)
+
+### TEI (chp.adapters.tei)
+
+- chp.adapters.tei.embed (v1.0.0)
+- chp.adapters.tei.health (v1.0.0) — Check whether the local TEI server is reachable and ready, via chp.adapters.http.
+- chp.adapters.tei.info (v1.0.0) — Fetch the TEI server
+- chp.adapters.tei.rerank (v1.0.0)
+
+### Vector (chp.adapters.vector)
+
+- chp.adapters.vector.add (v1.0.0) — Store a document for later semantic search.
+- chp.adapters.vector.count (v1.0.0) — Return the total number of stored documents.
+- chp.adapters.vector.delete (v1.0.0) — Delete a document from the vector store.
+- chp.adapters.vector.search (v1.0.0) — Semantic search over stored documents.
+
+### vLLM (chp.adapters.vllm)
+
+- chp.adapters.vllm.chat (v1.0.0)
+- chp.adapters.vllm.generate (v1.0.0)
+- chp.adapters.vllm.list_models (v1.0.0) — List models served by the local vLLM server (OpenAI /v1/models), via chp.adapters.http.
+
+## cloud
+
+### AWS (chp.adapters.aws)
+
+- chp.adapters.aws.ec2_list (v0.1.0) — List EC2 instances with optional state filter.
+- chp.adapters.aws.ec2_start (v0.1.0) — Start a stopped EC2 instance.
+- chp.adapters.aws.ec2_stop (v0.1.0) — Stop a running EC2 instance.
+- chp.adapters.aws.lambda_invoke (v0.1.0) — Invoke a Lambda function. Payload and response body never in evidence.
+- chp.adapters.aws.lambda_list (v0.1.0) — List Lambda functions.
+- chp.adapters.aws.s3_delete (v0.1.0) — Delete an S3 object.
+- chp.adapters.aws.s3_list (v0.1.0) — List objects in an S3 bucket, optionally filtered by prefix.
+- chp.adapters.aws.s3_metadata (v0.1.0) — Get metadata for a specific S3 object without downloading its content.
+- chp.adapters.aws.s3_put (v0.1.0) — Upload content to an S3 object. Content never in evidence.
+
+### Azure (chp.adapters.azure)
+
+- chp.adapters.azure.blob_delete (v0.1.0) — Delete an Azure blob.
+- chp.adapters.azure.blob_list (v0.1.0) — List blobs in an Azure Storage container.
+- chp.adapters.azure.blob_metadata (v0.1.0) — Get metadata for a specific Azure blob without downloading content.
+- chp.adapters.azure.blob_put (v0.1.0) — Upload content to an Azure blob. Content never in evidence.
+- chp.adapters.azure.function_invoke (v0.1.0) — Invoke an Azure Function. Payload and response body never in evidence.
+- chp.adapters.azure.function_list (v0.1.0) — List Azure Functions, optionally filtered by resource group.
+- chp.adapters.azure.vm_list (v0.1.0) — List Azure Virtual Machines, optionally filtered by resource group.
+- chp.adapters.azure.vm_start (v0.1.0) — Start a stopped Azure Virtual Machine.
+- chp.adapters.azure.vm_stop (v0.1.0) — Stop a running Azure Virtual Machine.
+
+### GCP (chp.adapters.gcp)
+
+- chp.adapters.gcp.compute_list (v0.1.0) — List Compute Engine instances, optionally filtered by zone.
+- chp.adapters.gcp.compute_start (v0.1.0) — Start a stopped Compute Engine instance.
+- chp.adapters.gcp.compute_stop (v0.1.0) — Stop a running Compute Engine instance.
+- chp.adapters.gcp.function_invoke (v0.1.0) — Invoke a Cloud Function. Payload and response never in evidence.
+- chp.adapters.gcp.function_list (v0.1.0) — List Cloud Functions, optionally filtered by region.
+- chp.adapters.gcp.gcs_delete (v0.1.0) — Delete a GCS object.
+- chp.adapters.gcp.gcs_list (v0.1.0) — List objects in a GCS bucket.
+- chp.adapters.gcp.gcs_metadata (v0.1.0) — Get metadata for a GCS object without downloading content.
+- chp.adapters.gcp.gcs_put (v0.1.0) — Upload content to a GCS object. Content never in evidence.
+
+### RaspberryPi (chp.adapters.raspi)
+
+- chp.adapters.raspi.camera_capture (v1.0.0) — Capture a still image. Returns file path, size, and resolution. Image bytes not in evidence.
+- chp.adapters.raspi.gpio_read (v1.0.0) — Read digital state of a GPIO pin.
+- chp.adapters.raspi.gpio_write (v1.0.0) — Write digital state to a GPIO pin.
+- chp.adapters.raspi.system_stats (v1.0.0) — CPU temperature, memory, disk usage, and uptime. No hardware dependencies.
+
+### Synology (chp.adapters.synology)
+
+- chp.adapters.synology.container_list (v1.0.0) — List Container Manager containers and their status.
+- chp.adapters.synology.container_start (v1.0.0) — Start a Container Manager container.
+- chp.adapters.synology.container_stop (v1.0.0) — Stop a Container Manager container.
+- chp.adapters.synology.download_create (v1.0.0) — Add a download task to Download Station.
+- chp.adapters.synology.file_info (v1.0.0) — Get metadata (size, modified, owner) for a file or folder.
+- chp.adapters.synology.file_list (v1.0.0) — List files in a Synology shared folder.
+- chp.adapters.synology.task_list (v1.0.0) — List Task Scheduler jobs and their last run status.
+
+### Tailscale (chp.adapters.tailscale)
+
+- chp.adapters.tailscale.chp_hosts (v1.0.0)
+- chp.adapters.tailscale.devices (v1.0.0)
+- chp.adapters.tailscale.verify_mesh (v1.0.0)
+
+### Vercel (chp.adapters.vercel)
+
+- chp.adapters.vercel.cancel_deployment (v0.1.0) — Cancel a running or queued Vercel deployment.
+- chp.adapters.vercel.get_build_logs (v0.1.0) — Get build log statistics for a deployment: line count and duration. Log text never in evidence.
+- chp.adapters.vercel.get_deployment (v0.1.0) — Get a single Vercel deployment: status, URL, build duration. Env var values never in evidence.
+- chp.adapters.vercel.list_deployments (v0.1.0) — List recent Vercel deployments: ID, state, URL, branch. Log content never in evidence.
+- chp.adapters.vercel.list_preview_urls (v0.1.0) — List Vercel preview deployments and their URLs.
+- chp.adapters.vercel.list_projects (v0.1.0) — List Vercel projects: IDs and names only.
+- chp.adapters.vercel.promote_deployment (v0.1.0) — Promote a deployment to production. High risk — requires explicit deployment_id and project_id.
+- chp.adapters.vercel.trigger_deploy (v0.1.0) — Trigger a new Vercel deployment from a git ref. Env var values never in evidence.
+
+## code
+
+### CI (chp.adapters.ci)
+
+- chp.adapters.ci.run_all (v1.0.0) — Run pytest across all packages in the repo. Each suite is a separate ctx.ainvoke(run_suite) call — every package gets its own evidence record.
+- chp.adapters.ci.run_suite (v1.0.0) — Run pytest for a single package and emit pass/fail evidence. Output is not recorded — only counts and duration.
+
+### Git (chp.adapters.git)
+
+- chp.adapters.git.checkout_branch (v0.1.0) — Create a new branch or switch to an existing one.
+- chp.adapters.git.commit (v0.1.0) — Stage specified files and create a commit. Diff content is never in evidence.
+- chp.adapters.git.diff_summary (v0.1.0) — Diff statistics only — files changed, insertions, deletions. Patch text is NEVER returned.
+- chp.adapters.git.inspect_repo (v0.1.0) — Repository overview: branch, HEAD SHA, remotes, commit count.
+- chp.adapters.git.log (v0.1.0) — Recent commit list: sha7, author name, subject (truncated), ISO date.
+- chp.adapters.git.merge (v0.1.0) — Merge a branch into the current branch. Evidence: branch, strategy, HEAD SHA7, conflicts flag.
+- chp.adapters.git.precommit_check (v0.1.0) — List staged files, count unstaged changes, and flag untracked files.
+- chp.adapters.git.pull (v0.1.0) — Pull from a remote. Evidence: remote, branch, new HEAD SHA7, fast_forward flag.
+- chp.adapters.git.push (v0.1.0) — Push a ref to a remote. Evidence: remote, ref, HEAD SHA7, success flag.
+- chp.adapters.git.status (v0.1.0) — Working tree status: branch name, staged/unstaged/untracked file counts.
+
+### GitHub (chp.adapters.github)
+
+- chp.adapters.github.add_labels (v1.0.0) — Add labels to an issue or pull request.
+- chp.adapters.github.create_comment (v1.0.0) — Add a comment to an issue or pull request.
+- chp.adapters.github.create_issue (v1.0.0) — Create a new issue in a repository.
+- chp.adapters.github.create_pull_request (v1.0.0) — Open a new pull request.
+- chp.adapters.github.get_issue (v1.0.0) — Get a single issue.
+- chp.adapters.github.get_pull_request (v1.0.0) — Get a single pull request with merge/CI detail.
+- chp.adapters.github.get_repo (v1.0.0) — Get repository metadata.
+- chp.adapters.github.list_issues (v1.0.0) — List issues for a repository (pull requests excluded).
+- chp.adapters.github.list_pr_reviews (v1.0.0) — List reviews on a pull request.
+- chp.adapters.github.list_pull_requests (v1.0.0) — List pull requests for a repository.
+- chp.adapters.github.list_workflow_runs (v1.0.0) — List recent GitHub Actions workflow runs (CI status).
+- chp.adapters.github.update_issue (v1.0.0) — Update an issue (title, state, labels, assignees).
+
+### Radicle (chp.adapters.radicle)
+
+- chp.adapters.radicle.identity — Local Radicle identity: DID public key only. Private key / NID never returned.
+- chp.adapters.radicle.issue_close — Close a Radicle issue by ID.
+- chp.adapters.radicle.issue_comment — Post a comment on a Radicle issue. Comment text never in evidence.
+- chp.adapters.radicle.issue_list — List Radicle issues: IDs, titles, states. Issue body never in evidence.
+- chp.adapters.radicle.issue_open — Open a new Radicle issue. Issue body never in evidence.
+- chp.adapters.radicle.issue_show — Show a Radicle issue: title, state, comment count. Body never in evidence.
+- chp.adapters.radicle.list_repos — List all locally tracked Radicle repositories (names + RIDs).
+- chp.adapters.radicle.node_status — Radicle node status: running/stopped, connected peer count.
+- chp.adapters.radicle.patch_list — List Radicle patches: IDs, titles, states. Patch body and diff never in evidence.
+- chp.adapters.radicle.patch_open — Open a new Radicle patch for the current branch. Patch body never in evidence.
+- chp.adapters.radicle.push — Push a branch to the Radicle remote (git push rad <branch>).
+- chp.adapters.radicle.repo_info — Radicle repository identity: RID, name, description, visibility, delegate count.
+- chp.adapters.radicle.sync — Sync a Radicle repo to the network (push local state to seeds).
+
+## data
+
+### Calendar (chp.adapters.calendar)
+
+- chp.adapters.calendar.create_event (v0.1.0) — Create a new calendar event. Description and attendees never in evidence.
+- chp.adapters.calendar.delete_event (v0.1.0) — Delete a calendar event.
+- chp.adapters.calendar.get_event (v0.1.0) — Get a single event by ID. Description never in evidence.
+- chp.adapters.calendar.list_events (v0.1.0) — List events in a calendar within a time range.
+- chp.adapters.calendar.update_event (v0.1.0) — Update an existing event. Description and attendees never in evidence.
+
+### Form (chp.adapters.form)
+
+- chp.adapters.form.close_form (v0.1.0) — Close a form to prevent further submissions.
+- chp.adapters.form.define_form (v0.1.0) — Create a form with typed fields. Field definitions never in evidence.
+- chp.adapters.form.get_submission (v0.1.0) — Retrieve a submission by ID including its answers.
+- chp.adapters.form.list_submissions (v0.1.0) — List submission IDs for a form. Submission answers never in evidence.
+- chp.adapters.form.submit (v0.1.0) — Submit answers to an open form. Answers never in evidence.
+
+### Jira (chp.adapters.jira)
+
+- chp.adapters.jira.add_comment (v1.0.0) — Add a comment to a Jira issue.
+- chp.adapters.jira.create_issue (v1.0.0) — Create a new Jira issue.
+- chp.adapters.jira.get_issue (v1.0.0) — Get a Jira issue by key.
+- chp.adapters.jira.list_issues (v1.0.0) — List Jira issues using JQL or field filters.
+- chp.adapters.jira.update_issue (v1.0.0) — Update a Jira issue (summary, priority, assignee, or transition status).
+
+### KnowledgeGraph (chp.adapters.knowledge_graph)
+
+- chp.adapters.knowledge_graph.add_edge (v1.0.0) — Add or replace a directed edge between two nodes.
+- chp.adapters.knowledge_graph.add_node (v1.0.0) — Add or replace a node in the knowledge graph.
+- chp.adapters.knowledge_graph.delete_node (v1.0.0) — Delete a node and all its edges.
+- chp.adapters.knowledge_graph.get_edges (v1.0.0) — Get edges connected to a node, with optional direction and relation filter.
+- chp.adapters.knowledge_graph.get_node (v1.0.0) — Retrieve a node and its properties by ID.
+- chp.adapters.knowledge_graph.list_nodes (v1.0.0) — List nodes, optionally filtered by type. Returns IDs and types only.
+
+### Linear (chp.adapters.linear)
+
+- chp.adapters.linear.add_comment (v1.0.0) — Add a comment to a Linear issue.
+- chp.adapters.linear.create_issue (v1.0.0) — Create a new Linear issue.
+- chp.adapters.linear.get_issue (v1.0.0) — Fetch a single issue by ID, including description.
+- chp.adapters.linear.list_issues (v1.0.0) — List issues with optional filters.
+- chp.adapters.linear.update_issue (v1.0.0) — Update an existing Linear issue.
+
+### Notion (chp.adapters.notion)
+
+- chp.adapters.notion.append_blocks (v1.0.0) — Append blocks to a Notion page or block.
+- chp.adapters.notion.create_page (v1.0.0) — Create a new Notion page.
+- chp.adapters.notion.get_page (v1.0.0) — Get a Notion page by ID.
+- chp.adapters.notion.query_database (v1.0.0) — Query a Notion database with optional filter and sort.
+- chp.adapters.notion.search (v1.0.0) — Search Notion pages and databases.
+
+### PostgreSQL (chp.adapters.postgres)
+
+- chp.adapters.postgres.describe_table (v1.0.0) — Describe a table
+- chp.adapters.postgres.execute (v1.0.0) — Run a writing SQL statement (INSERT/UPDATE/DELETE/DDL). High risk.
+- chp.adapters.postgres.list_tables (v1.0.0) — List tables in a schema (default public).
+- chp.adapters.postgres.query (v1.0.0) — Run a read-only SQL query (SELECT/WITH/EXPLAIN/SHOW). Rejects writes.
+
+### Preference (chp.adapters.preference)
+
+- chp.adapters.preference.delete (v0.1.0) — Delete a preference key.
+- chp.adapters.preference.get (v0.1.0) — Get a preference value. Value never in evidence.
+- chp.adapters.preference.list (v0.1.0) — List preference keys in a namespace. Values never in evidence.
+- chp.adapters.preference.reset_namespace (v0.1.0) — Delete all preference keys in a namespace.
+- chp.adapters.preference.set (v0.1.0) — Store a preference value. Value never in evidence.
+
+### Spreadsheet (chp.adapters.spreadsheet)
+
+- chp.adapters.spreadsheet.append_rows (v0.1.0) — Append rows using header-keyed dicts. Row data NEVER in evidence.
+- chp.adapters.spreadsheet.get_schema (v0.1.0) — Get headers, row count, and column count for a sheet.
+- chp.adapters.spreadsheet.list_sheets (v0.1.0) — List all sheet names with row and column counts.
+- chp.adapters.spreadsheet.read_range (v0.1.0) — Read rows from a sheet as header-keyed dicts. Cell values are returned to caller but NEVER stored in evidence.
+- chp.adapters.spreadsheet.write_range (v0.1.0) — Write rows at a given offset. Row data is accepted but NEVER stored in evidence.
+
+## filesystem
+
+### DocumentStore (chp.adapters.document_store)
+
+- chp.adapters.document_store.add (v0.1.0) — Add or replace a document. Content is accepted but never stored in evidence.
+- chp.adapters.document_store.delete (v0.1.0) — Delete a document by ID.
+- chp.adapters.document_store.get (v0.1.0) — Retrieve a document by ID. Content is returned to caller but never stored in evidence.
+- chp.adapters.document_store.list (v0.1.0) — List documents with optional metadata filter. Returns id and title only.
+- chp.adapters.document_store.search (v0.1.0) — Search documents by keyword query. Returns id, title, url, and score only — content never in evidence.
+
+### File Transform (chp.adapters.file_transform)
+
+- chp.adapters.file_transform.convert (v0.1.0) — Convert a file to another format.
+- chp.adapters.file_transform.extract_text (v0.1.0) — Extract text and metadata from a file. Text content never in evidence.
+- chp.adapters.file_transform.get_metadata (v0.1.0) — Read file metadata without accessing content.
+- chp.adapters.file_transform.split_pages (v0.1.0) — Extract specific pages from a multi-page document into separate files.
+
+### Filesystem (chp.adapters.filesystem)
+
+- chp.adapters.filesystem.glob_files (v1.0.0)
+- chp.adapters.filesystem.grep (v1.0.0)
+- chp.adapters.filesystem.list_directory (v1.0.0) — List entries in a directory.
+- chp.adapters.filesystem.read_file (v1.0.0) — Read a file
+- chp.adapters.filesystem.stat_path (v1.0.0) — Check existence, type, and size of a path.
+- chp.adapters.filesystem.write_file (v1.0.0) — Write or overwrite a file.
+
+## infra
+
+### Container (chp.adapters.container)
+
+- chp.adapters.container.list_containers (v1.0.0) — List Docker containers (running by default; pass all=true for stopped too).
+- chp.adapters.container.list_images (v1.0.0) — List locally available Docker images.
+- chp.adapters.container.pull (v1.0.0) — Pull a Docker image from a registry.
+- chp.adapters.container.run (v1.0.0) — Run a Docker container to completion and capture output.
+- chp.adapters.container.stop (v1.0.0) — Stop a running Docker container.
+
+### Host (chp.adapters.host)
+
+- chp.adapters.host.install_adapter (v1.0.0)
+- chp.adapters.host.restart (v1.0.0) — Restart this node
+- chp.adapters.host.stats (v1.0.0) — Report CPU load, memory, disk, GPU, and platform stats for this node.
+- chp.adapters.host.update (v1.0.0) — Schedule a detached upgrade of this node
+- chp.adapters.host.version (v1.0.0) — Report this node
+
+### Jobs (chp.adapters.jobs)
+
+- chp.adapters.jobs.list (v1.0.0) — List all jobs and their lifecycle state.
+- chp.adapters.jobs.result (v1.0.0) — Fetch a completed job
+- chp.adapters.jobs.status (v1.0.0) — Poll a background job
+- chp.adapters.jobs.submit (v1.0.0)
+
+### Kubernetes (chp.adapters.kubernetes)
+
+- chp.adapters.kubernetes.apply_manifest (v0.1.0) — Create or update a Kubernetes resource from a manifest. Spec never in evidence.
+- chp.adapters.kubernetes.get_pod_logs (v0.1.0) — Fetch pod logs. Log content returned to caller but never in evidence.
+- chp.adapters.kubernetes.list_deployments (v0.1.0) — List deployments in a namespace.
+- chp.adapters.kubernetes.list_namespaces (v0.1.0) — List Kubernetes namespaces.
+- chp.adapters.kubernetes.list_pods (v0.1.0) — List pods in a namespace, optionally filtered by label selector.
+- chp.adapters.kubernetes.restart_deployment (v0.1.0) — Trigger a rolling restart of a deployment.
+- chp.adapters.kubernetes.scale_deployment (v0.1.0) — Scale a deployment to the specified number of replicas.
+
+### Launchd (chp.adapters.launchd)
+
+- chp.adapters.launchd.install (v1.0.0)
+- chp.adapters.launchd.list (v1.0.0) — List CHP-managed launchd services (scoped to the managed label prefix).
+- chp.adapters.launchd.service_health (v1.0.0)
+- chp.adapters.launchd.start (v1.0.0) — Start (bootstrap) a service if not loaded, or restart it (kickstart -k) if already loaded.
+- chp.adapters.launchd.status (v1.0.0) — Report whether a launchd service is loaded/running, its pid, and last exit code.
+- chp.adapters.launchd.stop (v1.0.0) — Stop (bootout) a loaded launchd service.
+- chp.adapters.launchd.uninstall (v1.0.0) — Bootout a service and remove its LaunchAgent plist.
+
+### Process (chp.adapters.process)
+
+- chp.adapters.process.run (v1.0.0) — Execute a CLI command with arguments.
+
+### Release (chp.adapters.release)
+
+- chp.adapters.release.bump (v0.1.0)
+- chp.adapters.release.publish_npm (v0.1.0)
+- chp.adapters.release.publish_pypi (v0.1.0)
+- chp.adapters.release.sync (v0.1.0)
+- chp.adapters.release.tag (v0.1.0)
+
+### Secrets (chp.adapters.secrets)
+
+- chp.adapters.secrets.delete (v1.0.0) — Delete a secret by key.
+- chp.adapters.secrets.get (v1.0.0) — Retrieve a secret value by key.
+- chp.adapters.secrets.list (v1.0.0) — List available secret key names (no values returned).
+- chp.adapters.secrets.set (v1.0.0) — Store or update a secret value.
+
+### State Machine (chp.adapters.state_machine)
+
+- chp.adapters.state_machine.create (v1.0.0) — Create a new finite state machine instance.
+- chp.adapters.state_machine.get_state (v1.0.0) — Inspect the current state and status of a machine.
+- chp.adapters.state_machine.list_machines (v1.0.0) — List all state machine instances, optionally filtered by status.
+- chp.adapters.state_machine.transition (v1.0.0) — Fire an event on a state machine (event = target state name).
+
+### Workflow (chp.adapters.workflow)
+
+- chp.adapters.workflow.cancel (v1.0.0) — Cancel a running workflow. No-op if already in a terminal state.
+- chp.adapters.workflow.get_status (v1.0.0) — Get the current status and step history of a workflow.
+- chp.adapters.workflow.list (v1.0.0) — List workflow executions with optional status and type filters.
+- chp.adapters.workflow.record_step (v1.0.0) — Record a step outcome against a running workflow.
+- chp.adapters.workflow.submit (v1.0.0) — Submit a new workflow execution. Returns a workflow_id.
+
+## messaging
+
+### Email (chp.adapters.email)
+
+- chp.adapters.email.send (v1.0.0) — Send an outbound email.
+
+### Messages (chp.adapters.messages)
+
+- chp.adapters.messages.archive_to_remote (v1.0.0) — Archive a session
+- chp.adapters.messages.backfill_session (v1.0.0) — Parse a Claude Code JSONL transcript and backfill human-typed turns into the evidence chain.
+- chp.adapters.messages.list_sessions (v1.0.0) — List session IDs that have stored conversation transcripts.
+- chp.adapters.messages.load_session (v1.0.0) — Load all conversation turns for a session from the local JSONL store.
+- chp.adapters.messages.record_turn (v1.0.0) — Record a conversation turn (user/assistant/system) into the evidence chain and JSONL store.
+
+### Notification (chp.adapters.notification)
+
+- chp.adapters.notification.broadcast (v0.1.0) — Send a notification to multiple recipients. Message body NEVER in evidence.
+- chp.adapters.notification.notify (v0.1.0) — Send a notification to a single recipient via the specified channel. Message body NEVER in evidence.
+
+### Slack (chp.adapters.slack)
+
+- chp.adapters.slack.add_reaction (v1.0.0) — Add an emoji reaction to a message.
+- chp.adapters.slack.parse_interaction (v1.0.0) — Normalize a Slack block_actions interaction payload.
+- chp.adapters.slack.post_message (v1.0.0) — Post a message to a channel (optionally in a thread).
+- chp.adapters.slack.request_approval (v1.0.0) — Post an interactive Approve/Deny message (human-in-the-loop).
+- chp.adapters.slack.verify_request (v1.0.0) — Verify a Slack request signature (v0 HMAC) with replay protection.
+
+## network
+
+### GraphQL (chp.adapters.graphql)
+
+- chp.adapters.graphql.introspect (v0.1.0) — Fetch schema types via GraphQL introspection.
+- chp.adapters.graphql.mutate (v0.1.0) — Execute a GraphQL mutation. Variables never in evidence.
+- chp.adapters.graphql.query (v0.1.0) — Execute a GraphQL query. Variables never in evidence.
+
+### gRPC (chp.adapters.grpc)
+
+- chp.adapters.grpc.describe_service (v0.1.0) — Get methods and metadata for a gRPC service.
+- chp.adapters.grpc.list_services (v0.1.0) — List available gRPC services via reflection.
+- chp.adapters.grpc.server_health (v0.1.0) — Check gRPC server or service health via the standard health protocol.
+- chp.adapters.grpc.unary_call (v0.1.0) — Invoke a unary gRPC method. Request and response body never in evidence.
+
+### HTTP (chp.adapters.http)
+
+- chp.adapters.http.request (v1.0.0) — Make an HTTP request.
+
+### Kafka (chp.adapters.kafka)
+
+- chp.adapters.kafka.consume (v0.1.0) — Consume messages from a Kafka topic. Message values returned to caller but never in evidence.
+- chp.adapters.kafka.list_topics (v0.1.0) — List available Kafka topics.
+- chp.adapters.kafka.publish (v0.1.0) — Publish a single message to a Kafka topic. Value never in evidence.
+- chp.adapters.kafka.publish_batch (v0.1.0) — Publish multiple messages to a topic. Message values never in evidence.
+- chp.adapters.kafka.topic_metadata (v0.1.0) — Fetch partition and message-count metadata for a topic.
+
+### NATS (chp.adapters.nats)
+
+- chp.adapters.nats.list_subjects (v0.1.0) — List known subjects in the NATS server.
+- chp.adapters.nats.publish (v0.1.0) — Publish a single message to a NATS subject. Message data never in evidence.
+- chp.adapters.nats.publish_batch (v0.1.0) — Publish multiple NATS messages. Message data never in evidence.
+- chp.adapters.nats.request (v0.1.0) — Send a request message and await a reply. Request and reply data never in evidence.
+- chp.adapters.nats.subscribe_snapshot (v0.1.0) — Snapshot of buffered messages for a subject pattern. Message data never in evidence.
+
+### Webhook (chp.adapters.webhook)
+
+- chp.adapters.webhook.ingest (v1.0.0) — Verify a webhook then normalize it into a CHP event envelope.
+- chp.adapters.webhook.verify (v1.0.0) — Verify a webhook HMAC signature (constant-time).
+
+## platform
+
+### Audit Log (chp.adapters.audit)
+
+- chp.adapters.audit.get_invocation (v1.0.0) — Fetch event metadata for a specific invocation ID.
+- chp.adapters.audit.query_invocations (v1.0.0) — Query invocation records from the audit log with optional filters.
+- chp.adapters.audit.stats (v1.0.0) — Aggregate invocation counts by outcome and capability over a time window.
+- chp.adapters.audit.token_report (v1.0.0)
+
+### Capability Registry (chp.adapters.registry)
+
+- chp.adapters.registry.describe_host (v1.0.0) — Return the host descriptor with its full capability catalog.
+- chp.adapters.registry.get_capability (v1.0.0) — Fetch a capability descriptor by its exact ID.
+- chp.adapters.registry.list_capabilities (v1.0.0) — List capabilities registered on the host with optional filters.
+

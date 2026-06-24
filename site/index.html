@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>capabilities.txt — declare what your site can do</title>
+<meta name="description" content="A simple, open convention for a website to declare what it can do — the capabilities an agent can discover and invoke — at a well-known location. A discovery sibling to robots.txt and llms.txt, for the agentic web.">
+<meta property="og:title" content="capabilities.txt">
+<meta property="og:description" content="Declare what your site can do, so agents can discover it. A discovery sibling to robots.txt and llms.txt.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2305070a'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' fill='%2328D9F2' font-family='monospace'%3E.t%3C/text%3E%3C/svg%3E">
+<style>
+  :root{--bg:#05070a;--panel:#0c1014;--ink:#e7e9ea;--muted:#9aa0a6;--line:#1d2228;--accent:#28d9f2}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  code,pre{font-family:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  code{background:#11161b;border:1px solid var(--line);border-radius:5px;padding:.1em .4em;font-size:.88em}
+  pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6}
+  pre code{background:none;border:0;padding:0}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  header{padding:88px 0 36px}
+  .mark{font-family:"SF Mono",ui-monospace,monospace;font-size:13px;color:var(--accent);letter-spacing:.04em;text-transform:lowercase}
+  h1{font-size:clamp(34px,6vw,52px);line-height:1.05;letter-spacing:-.02em;margin:18px 0 16px}
+  h1 code{background:none;border:0;padding:0;color:inherit;font-family:inherit}
+  .lede{font-size:19px;color:var(--muted);max-width:42ch}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:56px 0 14px;font-weight:600}
+  h3{font-size:18px;margin:30px 0 8px}
+  p{color:#c7ccd1;margin:0 0 16px}
+  .muted{color:var(--muted)}
+  section{border-top:1px solid var(--line);padding:8px 0 4px}
+  table{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:14.5px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+  td.accent{color:var(--accent)}
+  .cta{display:inline-block;margin:6px 10px 6px 0;padding:11px 18px;border:1px solid var(--line);border-radius:9px;color:var(--ink);font-size:14px}
+  .cta.primary{background:var(--ink);color:#05070a;border-color:var(--ink);font-weight:600}
+  .cta:hover{text-decoration:none;border-color:var(--accent)}
+  footer{border-top:1px solid var(--line);margin-top:56px;padding:34px 0 80px;color:var(--muted);font-size:14px}
+  .next{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:18px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="mark">capabilities.txt</div>
+  <h1>Declare what your site can <em>do</em>.</h1>
+  <p class="lede">A simple, open convention for a website to publish the capabilities an agent can discover and invoke — at a well-known location.</p>
+  <div style="margin-top:24px">
+    <a class="cta primary" href="#adopt">Adopt it</a>
+    <a class="cta" href="https://github.com/capabilityhostprotocol/capabilities-txt">GitHub</a>
+    <a class="cta" href="/examples/capabilityhostprotocol.com.txt">See a live example</a>
+  </div>
+</header>
+
+<section id="background">
+  <h2>Background</h2>
+  <p>The web taught machines to read in layers. <code>robots.txt</code> says what a crawler may access. <code>sitemap.xml</code> says what exists. <code>llms.txt</code> says what's worth reading. Each answers one narrow question for an automated reader.</p>
+  <p>None of them answers the question agents now ask: <strong>what can this host actually <em>do</em>?</strong></p>
+  <p class="muted">Agents have stopped only <em>reading</em> the web and started <em>acting</em> on it. An agent that lands on your site can summarize your docs — but it has no standard way to discover that you expose a "create support ticket" capability, "check inventory," or "start a return," and how to call them. Today that happens through bespoke, one-vendor-at-a-time integrations.</p>
+</section>
+
+<section id="proposal">
+  <h2>The proposal</h2>
+  <p><code>capabilities.txt</code> is the missing layer: a public, well-known file where a host declares the capabilities it offers, so any agent can discover what it can do. A host publishes one or both:</p>
+  <h3><code>/capabilities.txt</code></h3>
+  <p class="muted">Human- and agent-readable markdown: capabilities grouped by category, each with an id, version, and one-line description.</p>
+  <h3><code>/.well-known/capabilities.json</code></h3>
+  <p class="muted">The structured form: an array of capability references, each resolvable to a full descriptor.</p>
+  <p>It's deliberately small. <code>llms.txt</code> worked because you could adopt it in an afternoon. <code>capabilities.txt</code> follows the same rule.</p>
+</section>
+
+<section id="format">
+  <h2>Format</h2>
+  <pre><code># capabilities.txt
+
+&gt; One sentence: what this host is and the capabilities it offers.
+&gt; Structured form: https://example.com/.well-known/capabilities.json
+
+## Support
+
+### Tickets (support.tickets)
+
+- support.create_ticket (v1.2.0) — Open a support ticket
+- support.get_status (v1.0.0) — Check a ticket's status
+
+## Commerce
+
+### Inventory (commerce.inventory)
+
+- commerce.check_stock (v2.0.0) — Check availability for a SKU</code></pre>
+  <p class="muted">Line 1 is <code># capabilities.txt</code>. A <code>&gt;</code> blockquote summarizes the host. <code>##</code> groups by category; <code>###</code> names a group; each capability is a list item with a stable id, optional <code>(v…)</code>, and a short description. It's just markdown — if a human can read it and an agent can parse it, it's valid.</p>
+</section>
+
+<section id="standards">
+  <h2>Where it sits</h2>
+  <table>
+    <tr><th>File</th><th>Answers</th><th>For</th></tr>
+    <tr><td><code>robots.txt</code></td><td>What may a crawler access?</td><td>Crawlers</td></tr>
+    <tr><td><code>sitemap.xml</code></td><td>What pages exist?</td><td>Search engines</td></tr>
+    <tr><td><code>llms.txt</code></td><td>What's worth reading?</td><td>LLMs reading</td></tr>
+    <tr><td class="accent"><code>capabilities.txt</code></td><td class="accent">What can this host <em>do</em>?</td><td class="accent">Agents acting</td></tr>
+  </table>
+  <p class="muted">It's <strong>not</strong> a replacement for MCP or an API spec. MCP is a stateful connection-and-invocation protocol; OpenAPI describes an HTTP API. <code>capabilities.txt</code> is the layer <em>before</em> invocation — a static, public, crawlable advertisement an agent can read with no live connection, that points to your MCP server or API for the actual call. Discovery and invocation are different jobs; capabilities.txt does discovery and hands off invocation.</p>
+</section>
+
+<section id="example">
+  <h2>Example</h2>
+  <p>A real, live <code>capabilities.txt</code> — the governed capability surface of the CHP adapter ecosystem:</p>
+  <p><a href="/examples/capabilityhostprotocol.com.txt">examples/capabilityhostprotocol.com.txt</a> &nbsp;·&nbsp; <a href="https://capabilityhostprotocol.com/capabilities.txt">capabilityhostprotocol.com/capabilities.txt</a></p>
+</section>
+
+<section id="adopt">
+  <h2>Adopt it</h2>
+  <p>1. List the capabilities your site exposes. 2. Write them into <code>/capabilities.txt</code> using the format above. 3. Optionally publish <code>/.well-known/capabilities.json</code>. 4. <a href="https://github.com/capabilityhostprotocol/capabilities-txt/blob/main/adopters.md">Add yourself to the directory</a> with a pull request.</p>
+  <p class="muted">Validate your file:</p>
+  <pre><code>curl -s https://yoursite.com/capabilities.txt \
+  | python tools/validate.py -</code></pre>
+</section>
+
+<section id="next">
+  <h2>Where this goes next</h2>
+  <div class="next">
+    <p style="margin-bottom:8px">Discovery is the first step. Once an agent knows <em>what</em> you can do, the next questions are <em>may I</em>, <em>what happened</em>, and <em>can I prove it</em> — invocation, governance, and evidence.</p>
+    <p class="muted" style="margin:0">Those are defined by the <a href="https://capabilityhostprotocol.com">Capability Host Protocol</a>, an open protocol for which <code>capabilities.txt</code> is the natural public face. You can adopt <code>capabilities.txt</code> on its own; CHP is where it leads if you need the rest.</p>
+  </div>
+</section>
+
+<footer>
+  <p>A proposal with a working reference, not a finished standard — and it's better for your feedback. <a href="https://github.com/capabilityhostprotocol/capabilities-txt">Open an issue or PR</a>.</p>
+  <p class="muted">Spec &amp; site text: CC BY 4.0 · tooling: Apache-2.0 · "capabilities.txt" is a free, open convention (no trademark). © 2026 Project Auxo, Inc. and contributors.</p>
+</footer>
+
+</div>
+</body>
+</html>
