@@ -1,7 +1,7 @@
 capabilities.txt
 Copyright 2026 Project Auxo, Inc. and contributors.
 
-The specification and site text (README.md, SPEC.md, site/) are licensed under
+The specification and site text (README.md, SPEC.md, index.html) are licensed under
 the Creative Commons Attribution 4.0 International License. See LICENSE-DOCS.
 
 The tooling (tools/) is licensed under the Apache License, Version 2.0. See LICENSE.

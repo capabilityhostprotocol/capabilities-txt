@@ -121,7 +121,7 @@ protocol for which `capabilities.txt` is the natural public face. You can adopt
 This is a proposal with a working reference, not a finished standard — and it's
 better for your feedback. Open an issue or PR.
 
-- **Specification & site text** (`README.md`, `site/`, `SPEC.md`): CC BY 4.0 — see
+- **Specification & site text** (`README.md`, `index.html`, `SPEC.md`): CC BY 4.0 — see
   [`LICENSE-DOCS`](LICENSE-DOCS).
 - **Tooling** (`tools/`): Apache-2.0 — see [`LICENSE`](LICENSE).
 - "capabilities.txt" is a free, open convention — use it freely. (No trademark.)
