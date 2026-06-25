@@ -1,0 +1,17 @@
+# capabilities.txt
+
+> The open convention for a website to declare what it can do — the capabilities an agent can discover and invoke — at /capabilities.txt. A discovery sibling to robots.txt and llms.txt, for the agentic web.
+
+## Start here
+- [The proposal, format, FAQ](https://capabilitiestxt.org): background, the format, examples, and how agents consume it.
+- [Specification](https://github.com/capabilityhostprotocol/capabilities-txt/blob/main/README.md): the full spec (the README is the spec).
+
+## Examples
+- [Live reference](https://capabilitiestxt.org/examples/capabilityhostprotocol.com.txt): a real, published capabilities.txt.
+- [E-commerce](https://capabilitiestxt.org/examples/illustrative/shop.example.txt) · [Customer support](https://capabilitiestxt.org/examples/illustrative/support.example.txt) · [Banking](https://capabilitiestxt.org/examples/illustrative/bank.example.txt) · [Healthcare](https://capabilitiestxt.org/examples/illustrative/clinic.example.txt) · [Developer platform](https://capabilitiestxt.org/examples/illustrative/cloud.example.txt)
+
+## Tools
+- [Validator, OpenAPI generator, resolver, and MCP server](https://github.com/capabilityhostprotocol/capabilities-txt/tree/main/tools)
+
+## Where this goes next
+- [Capability Host Protocol](https://capabilityhostprotocol.com): the invocation, governance, and evidence that come after discovery.

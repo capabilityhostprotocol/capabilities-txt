@@ -1,0 +1,16 @@
+# capabilities.txt
+
+> capabilitiestxt.org — home of the capabilities.txt convention. This is a
+> documentation host: it serves the specification, examples, and open-source
+> tooling. The capabilities below are provided as open-source CLI / MCP tools,
+> not hosted invocation endpoints.
+> Structured form: https://capabilitiestxt.org/.well-known/capabilities.json
+> Where invocation, governance, and evidence go next: https://capabilityhostprotocol.com
+
+## Tooling
+
+### capabilities-txt tools (capabilities-txt)
+
+- capabilities.validate (v0.1.0) — Validate a capabilities.txt file
+- capabilities.generate_from_openapi (v0.1.0) — Generate a capabilities.txt from an OpenAPI document
+- capabilities.resolve (v0.1.0) — Fetch and parse any site's capabilities.txt

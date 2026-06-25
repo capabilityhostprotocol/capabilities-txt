@@ -1,0 +1,8 @@
+{
+  "version": "1",
+  "capabilities": [
+    { "id": "capabilities.validate", "version": "0.1.0", "description": "Validate a capabilities.txt file" },
+    { "id": "capabilities.generate_from_openapi", "version": "0.1.0", "description": "Generate a capabilities.txt from an OpenAPI document" },
+    { "id": "capabilities.resolve", "version": "0.1.0", "description": "Fetch and parse any site's capabilities.txt" }
+  ]
+}

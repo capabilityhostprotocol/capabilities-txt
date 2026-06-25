@@ -1,0 +1,5 @@
+# capabilities.txt — agents and crawlers welcome.
+User-agent: *
+Allow: /
+
+Sitemap: https://capabilitiestxt.org/sitemap.xml
