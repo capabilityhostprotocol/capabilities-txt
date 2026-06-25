@@ -104,8 +104,16 @@ hands off invocation.
 3. Optionally publish `/.well-known/capabilities.json`.
 4. Add yourself to [`adopters.md`](adopters.md) with a pull request.
 
-A working reference — a real, live `capabilities.txt` — is in
-[`examples/`](examples/), and the validator in [`tools/`](tools/) checks your file.
+**Already have an OpenAPI spec?** Generate it — no manual authoring:
+
+```bash
+python tools/from_openapi.py https://api.yoursite.com/openapi.json > capabilities.txt
+python tools/validate.py capabilities.txt   # check it
+```
+
+Working references — a real, live `capabilities.txt` plus illustrative templates
+across markets (e-commerce, support, banking, healthcare, dev platform) — are in
+[`examples/`](examples/). The tools in [`tools/`](tools/) generate and validate files.
 
 ## Where this goes next
 

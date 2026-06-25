@@ -8,6 +8,12 @@
 <meta property="og:title" content="capabilities.txt">
 <meta property="og:description" content="Declare what your site can do, so agents can discover it. A discovery sibling to robots.txt and llms.txt.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://capabilitiestxt.org/">
+<meta property="og:image" content="https://capabilitiestxt.org/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="capabilities.txt — declare what your site can do">
+<meta name="twitter:description" content="The open convention for agents to discover what a site can do. A sibling to robots.txt and llms.txt.">
+<meta name="twitter:image" content="https://capabilitiestxt.org/og.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2305070a'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' fill='%2328D9F2' font-family='monospace'%3E.t%3C/text%3E%3C/svg%3E">
 <style>
   :root{--bg:#05070a;--panel:#0c1014;--ink:#e7e9ea;--muted:#9aa0a6;--line:#1d2228;--accent:#28d9f2}
@@ -126,9 +132,23 @@
 <section id="adopt">
   <h2>Adopt it</h2>
   <p>1. List the capabilities your site exposes. 2. Write them into <code>/capabilities.txt</code> using the format above. 3. Optionally publish <code>/.well-known/capabilities.json</code>. 4. <a href="https://github.com/capabilityhostprotocol/capabilities-txt/blob/main/adopters.md">Add yourself to the directory</a> with a pull request.</p>
-  <p class="muted">Validate your file:</p>
-  <pre><code>curl -s https://yoursite.com/capabilities.txt \
-  | python tools/validate.py -</code></pre>
+  <p class="muted">Already have an OpenAPI spec or an MCP server? Generate it — no manual authoring:</p>
+  <pre><code># from an OpenAPI description
+python tools/from_openapi.py https://api.yoursite.com/openapi.json &gt; capabilities.txt
+
+# validate any capabilities.txt
+curl -s https://yoursite.com/capabilities.txt | python tools/validate.py -</code></pre>
+</section>
+
+<section id="agents">
+  <h2>For agents (how to consume it)</h2>
+  <p>capabilities.txt is only as useful as the agents that read it. The consumer flow is deliberately simple:</p>
+  <ol style="color:#c7ccd1;padding-left:22px">
+    <li><strong>Discover</strong> — fetch <code>https://host/capabilities.txt</code> (or <code>/.well-known/capabilities.json</code> for structure).</li>
+    <li><strong>Choose</strong> — pick a capability by id and read its one-line description.</li>
+    <li><strong>Invoke</strong> — call it via the host's invocation endpoint (an MCP server, an HTTP API, etc.) that the file points to. capabilities.txt does discovery; it hands off invocation.</li>
+  </ol>
+  <p class="muted">A capability that <em>does</em> something — a transfer, a refill, a deploy — should also tell a careful agent <em>whether it may</em> and <em>whether the action is recorded</em>. That governance layer is <a href="https://capabilityhostprotocol.com">CHP</a>; capabilities.txt is the public front door to it.</p>
 </section>
 
 <section id="next">
@@ -137,6 +157,22 @@
     <p style="margin-bottom:8px">Discovery is the first step. Once an agent knows <em>what</em> you can do, the next questions are <em>may I</em>, <em>what happened</em>, and <em>can I prove it</em> — invocation, governance, and evidence.</p>
     <p class="muted" style="margin:0">Those are defined by the <a href="https://capabilityhostprotocol.com">Capability Host Protocol</a>, an open protocol for which <code>capabilities.txt</code> is the natural public face. You can adopt <code>capabilities.txt</code> on its own; CHP is where it leads if you need the rest.</p>
   </div>
+</section>
+
+<section id="faq">
+  <h2>FAQ</h2>
+  <h3>Isn't this just MCP?</h3>
+  <p class="muted">No — they're complementary. MCP is a stateful connection that <em>runs</em> tools. capabilities.txt is the static, crawlable layer <em>before</em> that: an agent (or a search engine) reads it with no connection, then uses MCP/your API to actually invoke. Discovery vs. invocation.</p>
+  <h3>Isn't this just OpenAPI?</h3>
+  <p class="muted">OpenAPI describes the shape of an HTTP API in detail. capabilities.txt is a one-screen, human-and-agent-readable advertisement of <em>what you can do</em> — published at a well-known path, framework-agnostic, and able to point at <em>any</em> invocation method (MCP, HTTP, gRPC). You can generate one <em>from</em> OpenAPI.</p>
+  <h3>Isn't this just llms.txt for actions?</h3>
+  <p class="muted">Essentially, yes — and that's the point. llms.txt says what's worth <em>reading</em>; capabilities.txt says what you can <em>do</em>. Same spirit, the next layer.</p>
+  <h3>Do I need CHP to use it?</h3>
+  <p class="muted">No. capabilities.txt stands alone — publish one today, point it at whatever you already run. CHP is where it leads <em>if</em> you need governance, permissions, and provable evidence for the actions.</p>
+  <h3>Won't this expose me to abuse?</h3>
+  <p class="muted">It only advertises what you already expose; it grants nothing. Authentication, rate limits, and authorization stay on your invocation endpoint. Declaring a capability is not the same as leaving it open.</p>
+  <h3>Will agents actually use it?</h3>
+  <p class="muted">Agentic and IDE tooling already fetches well-known files like llms.txt. capabilities.txt is the same cheap, agent-readable infrastructure — for action, not just reading. It's a proposal; adoption is the work, and your feedback shapes it.</p>
 </section>
 
 <footer>
