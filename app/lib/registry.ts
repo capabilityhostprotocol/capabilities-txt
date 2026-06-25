@@ -6,12 +6,18 @@ import { analyze } from './conformance';
 
 const MAX_CAPS_STORED = 1000;
 
+/** Canonical registry domain: host without a leading "www." (so apex + www collapse to one entry). */
 function hostOf(u: string): string {
   try {
-    return new URL(u).host;
+    return new URL(u).host.replace(/^www\./, '');
   } catch {
-    return '';
+    return u.trim().replace(/^https?:\/\//, '').replace(/\/.*$/, '').replace(/^www\./, '');
   }
+}
+
+/** Normalize any user/agent-supplied domain to the canonical registry key. */
+export function canonicalDomain(input: string): string {
+  return hostOf(/^https?:\/\//.test(input) ? input : `https://${input}`);
 }
 
 export async function registerSite(input: string): Promise<{ domain: string; grade: string; count: number }> {
@@ -120,8 +126,9 @@ export async function stats(): Promise<{ sites: number; capabilities: number; ca
   return r[0] ?? { sites: 0, capabilities: 0, categories: 0 };
 }
 
-export async function getSite(domain: string): Promise<(SiteRow & { capabilities: DiscoverHit[] }) | null> {
+export async function getSite(input: string): Promise<(SiteRow & { capabilities: DiscoverHit[] }) | null> {
   if (!sql) return null;
+  const domain = canonicalDomain(input);
   const rows = (await sql`select * from sites where domain = ${domain}`) as SiteRow[];
   if (!rows[0]) return null;
   const caps = (await sql`

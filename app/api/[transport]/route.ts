@@ -41,7 +41,7 @@ const handler = createMcpHandler(
         inputSchema: { domain: z.string().describe('A domain, e.g. example.com') },
       },
       async ({ domain }) => {
-        const site = await getSite(domain.trim().replace(/^https?:\/\//, '').replace(/\/.*$/, ''));
+        const site = await getSite(domain);
         return {
           content: [{ type: 'text' as const, text: site ? JSON.stringify(site, null, 2) : `No site "${domain}" is listed in the registry.` }],
         };
