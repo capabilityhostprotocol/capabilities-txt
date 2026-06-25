@@ -5,6 +5,7 @@ export default function Nav() {
       <a href="/#format">Spec</a>
       <a href="/implement">Implement</a>
       <a href="/submit">Check yours</a>
+      <a href="/directory">Directory</a>
       <a href="https://github.com/capabilityhostprotocol/capabilities-txt">GitHub</a>
     </nav>
   );

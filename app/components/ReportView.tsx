@@ -1,5 +1,6 @@
 import type { Report } from '../lib/conformance';
 import CopyButton from './CopyButton';
+import RegisterButton from './RegisterButton';
 
 function hostOf(url: string): string {
   try {
@@ -62,6 +63,10 @@ export default function ReportView({ report, sourceUrl }: { report: Report; sour
             <code>{badgeMd}</code>
           </pre>
           <CopyButton text={badgeMd} label="Copy badge markdown" />
+
+          <h2>List it</h2>
+          <p className="muted">Add this site to the public directory so agents (and people) can discover what it can do.</p>
+          <RegisterButton url={sourceUrl} />
         </>
       )}
     </div>
