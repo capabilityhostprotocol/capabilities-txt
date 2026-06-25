@@ -84,3 +84,48 @@ export async function recheckAll(limit = 200): Promise<{ checked: number; dead: 
   }
   return { checked: rows.length, dead };
 }
+
+// ---- Discovery (Phase 3) ----
+
+export interface DiscoverHit {
+  domain: string;
+  grade: string;
+  id: string;
+  version: string;
+  description: string;
+  category: string;
+}
+
+/** Find capabilities across the whole registry matching a query — "who can do X". */
+export async function discover(q: string, limit = 60): Promise<DiscoverHit[]> {
+  if (!sql) return [];
+  const like = `%${q}%`;
+  return (await sql`
+    select s.domain, s.grade, c.capability_id as id, c.version, c.description, c.category
+    from capabilities c join sites s on s.domain = c.domain
+    where s.status = 'active'
+      and (c.capability_id ilike ${like} or c.description ilike ${like} or c.category ilike ${like})
+    order by s.score desc, c.capability_id asc
+    limit ${limit}`) as DiscoverHit[];
+}
+
+export async function stats(): Promise<{ sites: number; capabilities: number; categories: number }> {
+  if (!sql) return { sites: 0, capabilities: 0, categories: 0 };
+  const r = (await sql`
+    select
+      (select count(*) from sites where status='active')::int as sites,
+      (select count(*) from capabilities c join sites s on s.domain=c.domain where s.status='active')::int as capabilities,
+      (select count(distinct category) from capabilities c join sites s on s.domain=c.domain where s.status='active' and category <> '')::int as categories
+  `) as { sites: number; capabilities: number; categories: number }[];
+  return r[0] ?? { sites: 0, capabilities: 0, categories: 0 };
+}
+
+export async function getSite(domain: string): Promise<(SiteRow & { capabilities: DiscoverHit[] }) | null> {
+  if (!sql) return null;
+  const rows = (await sql`select * from sites where domain = ${domain}`) as SiteRow[];
+  if (!rows[0]) return null;
+  const caps = (await sql`
+    select ${domain} as domain, ${rows[0].grade} as grade, capability_id as id, version, description, category
+    from capabilities where domain = ${domain} order by category, capability_id`) as DiscoverHit[];
+  return { ...rows[0], capabilities: caps };
+}

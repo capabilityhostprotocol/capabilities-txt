@@ -13,7 +13,9 @@
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "@vercel/analytics": "^1.4.1",
-    "@neondatabase/serverless": "^1.0.2"
+    "@neondatabase/serverless": "^1.0.2",
+    "mcp-handler": "^1.1.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "typescript": "^5.6.3",

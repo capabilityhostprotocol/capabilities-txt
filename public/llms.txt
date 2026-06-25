@@ -10,6 +10,12 @@
 - [Live reference](https://capabilitiestxt.org/examples/capabilityhostprotocol.com.txt): a real, published capabilities.txt.
 - [E-commerce](https://capabilitiestxt.org/examples/illustrative/shop.example.txt) · [Customer support](https://capabilitiestxt.org/examples/illustrative/support.example.txt) · [Banking](https://capabilitiestxt.org/examples/illustrative/bank.example.txt) · [Healthcare](https://capabilitiestxt.org/examples/illustrative/clinic.example.txt) · [Developer platform](https://capabilitiestxt.org/examples/illustrative/cloud.example.txt)
 
+## Registry & discovery (for agents)
+- [The capability map](https://capabilitiestxt.org/map): search capabilities across every registered site — who can do what.
+- [/api/discover](https://capabilitiestxt.org/api/discover): GET ?q=<keyword> — agent-queryable discovery over the whole registry (JSON, CORS-open).
+- [Registry MCP server](https://capabilitiestxt.org/api/mcp): connect over MCP to discover_capabilities, list_sites, get_site across the indexed web.
+- [Directory](https://capabilitiestxt.org/directory): browse listed sites · [check a file](https://capabilitiestxt.org/submit) · [implement one](https://capabilitiestxt.org/implement).
+
 ## Tools
 - [Validator, OpenAPI generator, resolver, and MCP server](https://github.com/capabilityhostprotocol/capabilities-txt/tree/main/tools)
 
