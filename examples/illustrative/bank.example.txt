@@ -3,6 +3,7 @@
 > bank.example — a digital bank. Accounts, payments, and disputes.
 > Sensitive capabilities require step-up auth and emit governed, auditable evidence.
 > Structured form: https://bank.example/.well-known/capabilities.json
+> Invocation, governance & evidence via the Capability Host Protocol: https://www.capabilityhostprotocol.com
 > (Illustrative example — fictional site.)
 
 ## Accounts

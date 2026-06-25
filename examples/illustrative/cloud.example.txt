@@ -2,6 +2,7 @@
 
 > cloud.example — a developer platform. Deploys, logs, and scaling.
 > Structured form: https://cloud.example/.well-known/capabilities.json
+> Invocation, governance & evidence via the Capability Host Protocol: https://www.capabilityhostprotocol.com
 > (Illustrative example — fictional site.)
 
 ## Deployments

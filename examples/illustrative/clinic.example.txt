@@ -3,6 +3,7 @@
 > clinic.example — a healthcare provider. Scheduling, records, and prescriptions.
 > Access is permissioned and audited; clinical actions require a licensed human in the loop.
 > Structured form: https://clinic.example/.well-known/capabilities.json
+> Invocation, governance & evidence via the Capability Host Protocol: https://www.capabilityhostprotocol.com
 > (Illustrative example — fictional site.)
 
 ## Scheduling

@@ -2,6 +2,7 @@
 
 > support.example — a customer support platform. Tickets, knowledge, and escalation.
 > Structured form: https://support.example/.well-known/capabilities.json
+> Invocation, governance & evidence via the Capability Host Protocol: https://www.capabilityhostprotocol.com
 > (Illustrative example — fictional site.)
 
 ## Tickets

@@ -2,6 +2,7 @@
 
 > shop.example — a retail storefront. Capabilities for catalog, cart, orders, and returns.
 > Structured form: https://shop.example/.well-known/capabilities.json
+> Invocation, governance & evidence via the Capability Host Protocol: https://www.capabilityhostprotocol.com
 > (Illustrative example — fictional site.)
 
 ## Catalog
