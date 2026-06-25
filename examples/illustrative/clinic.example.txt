@@ -1,0 +1,26 @@
+# capabilities.txt
+
+> clinic.example — a healthcare provider. Scheduling, records, and prescriptions.
+> Access is permissioned and audited; clinical actions require a licensed human in the loop.
+> Structured form: https://clinic.example/.well-known/capabilities.json
+> (Illustrative example — fictional site.)
+
+## Scheduling
+
+### Appointments (health.scheduling)
+
+- health.find_slot (v1.0.0) — Find available appointment slots
+- health.book_appointment (v1.1.0) — Book an appointment for a patient
+- health.cancel_appointment (v1.0.0) — Cancel an appointment
+
+## Records
+
+### Records (health.records) — protected
+
+- health.request_records (v1.0.0) — Request release of records (requires patient consent; emits consent + access evidence)
+
+## Prescriptions
+
+### Prescriptions (health.rx) — clinician-gated
+
+- health.request_refill (v1.0.0) — Request a refill (routed to a clinician; the sign-off is recorded)

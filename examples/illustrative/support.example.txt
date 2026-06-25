@@ -1,0 +1,21 @@
+# capabilities.txt
+
+> support.example — a customer support platform. Tickets, knowledge, and escalation.
+> Structured form: https://support.example/.well-known/capabilities.json
+> (Illustrative example — fictional site.)
+
+## Tickets
+
+### Tickets (support.tickets)
+
+- support.create_ticket (v1.2.0) — Open a support ticket
+- support.get_ticket (v1.0.0) — Retrieve a ticket and its history
+- support.add_reply (v1.0.0) — Add a reply to a ticket
+- support.escalate (v1.1.0) — Escalate to a human agent (emits an approval-required event)
+
+## Knowledge
+
+### Articles (support.kb)
+
+- support.search_kb (v1.0.0) — Search the knowledge base
+- support.suggest_article (v1.0.0) — Suggest the best article for a question

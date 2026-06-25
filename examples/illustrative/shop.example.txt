@@ -1,0 +1,26 @@
+# capabilities.txt
+
+> shop.example — a retail storefront. Capabilities for catalog, cart, orders, and returns.
+> Structured form: https://shop.example/.well-known/capabilities.json
+> (Illustrative example — fictional site.)
+
+## Catalog
+
+### Products (catalog.products)
+
+- catalog.search (v1.0.0) — Search products by query, category, or attributes
+- catalog.get_product (v1.0.0) — Get product details, variants, and price
+- catalog.check_stock (v2.1.0) — Check availability for a SKU at a location
+
+## Orders
+
+### Cart & checkout (orders.cart)
+
+- orders.add_to_cart (v1.0.0) — Add an item to the shopper's cart
+- orders.create_order (v1.3.0) — Place an order (requires an authenticated shopper)
+- orders.get_status (v1.0.0) — Get status and tracking for an order
+
+### Returns (orders.returns)
+
+- orders.start_return (v1.1.0) — Start a return for an eligible item (requires order ownership)
+- orders.get_refund_status (v1.0.0) — Check the status of a refund

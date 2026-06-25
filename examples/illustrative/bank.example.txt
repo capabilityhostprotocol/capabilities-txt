@@ -1,0 +1,27 @@
+# capabilities.txt
+
+> bank.example — a digital bank. Accounts, payments, and disputes.
+> Sensitive capabilities require step-up auth and emit governed, auditable evidence.
+> Structured form: https://bank.example/.well-known/capabilities.json
+> (Illustrative example — fictional site.)
+
+## Accounts
+
+### Accounts (banking.accounts)
+
+- banking.get_balance (v1.0.0) — Get the balance for an authorized account
+- banking.list_transactions (v1.2.0) — List transactions for an account
+
+## Payments
+
+### Transfers (banking.payments) — sensitive
+
+- banking.initiate_transfer (v2.0.0) — Initiate a transfer (step-up auth; emits an approval + evidence record)
+- banking.get_transfer_status (v1.0.0) — Check the status of a transfer
+
+## Disputes
+
+### Disputes (banking.disputes)
+
+- banking.open_dispute (v1.1.0) — Open a dispute on a transaction (records reason + evidence)
+- banking.get_dispute_status (v1.0.0) — Check the status of a dispute

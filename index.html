@@ -108,9 +108,19 @@
 </section>
 
 <section id="example">
-  <h2>Example</h2>
+  <h2>Examples</h2>
   <p>A real, live <code>capabilities.txt</code> — the governed capability surface of the CHP adapter ecosystem:</p>
-  <p><a href="/examples/capabilityhostprotocol.com.txt">examples/capabilityhostprotocol.com.txt</a> &nbsp;·&nbsp; <a href="https://capabilityhostprotocol.com/capabilities.txt">capabilityhostprotocol.com/capabilities.txt</a></p>
+  <p><a href="/examples/capabilityhostprotocol.com.txt">capabilityhostprotocol.com/capabilities.txt</a> <span class="muted">— live</span></p>
+  <p style="margin-top:22px">And how it looks across markets (illustrative templates you can lift):</p>
+  <table>
+    <tr><th>Market</th><th>Example</th><th>Capabilities like…</th></tr>
+    <tr><td>E-commerce</td><td><a href="/examples/illustrative/shop.example.txt">shop.example</a></td><td>check stock, place order, start a return</td></tr>
+    <tr><td>Customer support</td><td><a href="/examples/illustrative/support.example.txt">support.example</a></td><td>create ticket, search KB, escalate to a human</td></tr>
+    <tr><td>Banking / fintech</td><td><a href="/examples/illustrative/bank.example.txt">bank.example</a></td><td>balance, initiate transfer (step-up), open dispute</td></tr>
+    <tr><td>Healthcare</td><td><a href="/examples/illustrative/clinic.example.txt">clinic.example</a></td><td>book appointment, request records (consent), refill (clinician-gated)</td></tr>
+    <tr><td>Developer platform</td><td><a href="/examples/illustrative/cloud.example.txt">cloud.example</a></td><td>deploy, fetch logs, scale (entitlement-gated)</td></tr>
+  </table>
+  <p class="muted">Notice the pattern: read-only capabilities are simple; the consequential ones (a transfer, a refill, a deploy) note who must approve and that the action is recorded. That hand-off — from "what you can do" to "may I, and can I prove it" — is where <a href="https://capabilityhostprotocol.com">CHP</a> picks up.</p>
 </section>
 
 <section id="adopt">

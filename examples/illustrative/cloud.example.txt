@@ -1,0 +1,26 @@
+# capabilities.txt
+
+> cloud.example — a developer platform. Deploys, logs, and scaling.
+> Structured form: https://cloud.example/.well-known/capabilities.json
+> (Illustrative example — fictional site.)
+
+## Deployments
+
+### Deploys (platform.deploys)
+
+- platform.deploy (v2.0.0) — Deploy a project (records who/what/when as evidence)
+- platform.rollback (v1.2.0) — Roll back to a previous deployment
+- platform.get_status (v1.0.0) — Get deployment status
+
+## Observability
+
+### Logs & metrics (platform.observability)
+
+- platform.get_logs (v1.0.0) — Fetch runtime logs for a deployment
+- platform.get_metrics (v1.0.0) — Fetch metrics for a service
+
+## Scaling
+
+### Scaling (platform.scaling) — sensitive
+
+- platform.scale (v1.1.0) — Change the instance count (requires entitlement; gated + recorded)
