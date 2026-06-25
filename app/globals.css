@@ -30,9 +30,9 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:34px 0 80px;colo
 .next{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:18px 0}
 
 /* ---- shared nav across pages ---- */
-.nav{display:flex;gap:18px;align-items:center;padding:18px 0 0;font-size:14px}
+.nav{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding:18px 0 2px;font-size:14px}
 .nav .brand{font-family:"SF Mono",ui-monospace,monospace;color:var(--accent);text-transform:lowercase;margin-right:auto}
-.nav a{color:var(--muted)}
+.nav a{color:var(--muted);white-space:nowrap}
 .nav a:hover{color:var(--ink)}
 
 /* ---- forms / tool pages ---- */
