@@ -99,6 +99,14 @@ hands off invocation.
 
 ## Adopt it
 
+**Fastest:** copy the prompt at [capabilitiestxt.org/implement](https://capabilitiestxt.org/implement)
+and hand it to your AI coding agent (Claude Code, Cursor, …) — it inspects your API
+and writes your `capabilities.txt` for you. Then **check it** at
+[capabilitiestxt.org/submit](https://capabilitiestxt.org/submit) for a conformance
+grade, fixes, and a badge.
+
+By hand:
+
 1. List the capabilities your site exposes (or could).
 2. Write them into `/capabilities.txt` using the format above.
 3. Optionally publish `/.well-known/capabilities.json`.
