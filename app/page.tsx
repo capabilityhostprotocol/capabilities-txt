@@ -1,95 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>capabilities.txt — declare what your site can do</title>
-<meta name="description" content="A simple, open convention for a website to declare what it can do — the capabilities an agent can discover and invoke — at a well-known location. A discovery sibling to robots.txt and llms.txt, for the agentic web.">
-<meta property="og:title" content="capabilities.txt">
-<meta property="og:description" content="Declare what your site can do, so agents can discover it. A discovery sibling to robots.txt and llms.txt.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://capabilitiestxt.org/">
-<meta property="og:image" content="https://capabilitiestxt.org/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="capabilities.txt — declare what your site can do">
-<meta name="twitter:description" content="The open convention for agents to discover what a site can do. A sibling to robots.txt and llms.txt.">
-<meta name="twitter:image" content="https://capabilitiestxt.org/og.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2305070a'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' fill='%2328D9F2' font-family='monospace'%3E.t%3C/text%3E%3C/svg%3E">
-<style>
-  :root{--bg:#05070a;--panel:#0c1014;--ink:#e7e9ea;--muted:#9aa0a6;--line:#1d2228;--accent:#28d9f2}
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-  a{color:var(--accent);text-decoration:none}
-  a:hover{text-decoration:underline}
-  code,pre{font-family:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-  code{background:#11161b;border:1px solid var(--line);border-radius:5px;padding:.1em .4em;font-size:.88em}
-  pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6}
-  pre code{background:none;border:0;padding:0}
-  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
-  header{padding:88px 0 36px}
-  .mark{font-family:"SF Mono",ui-monospace,monospace;font-size:13px;color:var(--accent);letter-spacing:.04em;text-transform:lowercase}
-  h1{font-size:clamp(34px,6vw,52px);line-height:1.05;letter-spacing:-.02em;margin:18px 0 16px}
-  h1 code{background:none;border:0;padding:0;color:inherit;font-family:inherit}
-  .lede{font-size:19px;color:var(--muted);max-width:42ch}
-  h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:56px 0 14px;font-weight:600}
-  h3{font-size:18px;margin:30px 0 8px}
-  p{color:#c7ccd1;margin:0 0 16px}
-  .muted{color:var(--muted)}
-  section{border-top:1px solid var(--line);padding:8px 0 4px}
-  table{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:14.5px}
-  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
-  td.accent{color:var(--accent)}
-  .cta{display:inline-block;margin:6px 10px 6px 0;padding:11px 18px;border:1px solid var(--line);border-radius:9px;color:var(--ink);font-size:14px}
-  .cta.primary{background:var(--ink);color:#05070a;border-color:var(--ink);font-weight:600}
-  .cta:hover{text-decoration:none;border-color:var(--accent)}
-  footer{border-top:1px solid var(--line);margin-top:56px;padding:34px 0 80px;color:var(--muted);font-size:14px}
-  .next{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:18px 0}
-</style>
-<link rel="canonical" href="https://capabilitiestxt.org/">
-<link rel="alternate" type="text/markdown" href="https://github.com/capabilityhostprotocol/capabilities-txt/blob/main/README.md" title="Specification (markdown)">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://capabilitiestxt.org/#website",
-      "url": "https://capabilitiestxt.org/",
-      "name": "capabilities.txt",
-      "description": "An open convention for a website to declare what it can do — the capabilities an agent can discover and invoke."
-    },
-    {
-      "@type": "TechArticle",
-      "headline": "capabilities.txt — declare what your site can do",
-      "description": "A simple, open convention for a website to publish the capabilities an agent can discover and invoke, at a well-known location. A discovery sibling to robots.txt and llms.txt.",
-      "url": "https://capabilitiestxt.org/",
-      "image": "https://capabilitiestxt.org/og.png",
-      "author": { "@type": "Organization", "name": "Project Auxo, Inc.", "url": "https://capabilityhostprotocol.com" },
-      "license": "https://creativecommons.org/licenses/by/4.0/",
-      "keywords": ["capabilities.txt", "agents", "agentic web", "discovery", "llms.txt", "MCP"]
-    },
-    {
-      "@type": "SoftwareSourceCode",
-      "name": "capabilities-txt",
-      "codeRepository": "https://github.com/capabilityhostprotocol/capabilities-txt",
-      "programmingLanguage": "Python",
-      "license": "https://www.apache.org/licenses/LICENSE-2.0"
-    }
-  ]
-}
-</script>
-</head>
-<body>
-<div class="wrap">
+import Nav from './components/Nav';
 
+// The landing content is preserved verbatim from the original static site.
+const BODY = `
 <header>
   <div class="mark">capabilities.txt</div>
   <h1>Declare what your site can <em>do</em>.</h1>
   <p class="lede">A simple, open convention for a website to publish the capabilities an agent can discover and invoke — at a well-known location.</p>
   <div style="margin-top:24px">
-    <a class="cta primary" href="#adopt">Adopt it</a>
+    <a class="cta primary" href="/implement">Implement it</a>
+    <a class="cta" href="/submit">Check your file</a>
     <a class="cta" href="https://github.com/capabilityhostprotocol/capabilities-txt">GitHub</a>
     <a class="cta" href="/examples/capabilityhostprotocol.com.txt">See a live example</a>
   </div>
@@ -164,8 +83,9 @@
 
 <section id="adopt">
   <h2>Adopt it</h2>
-  <p>1. List the capabilities your site exposes. 2. Write them into <code>/capabilities.txt</code> using the format above. 3. Optionally publish <code>/.well-known/capabilities.json</code>. 4. <a href="https://github.com/capabilityhostprotocol/capabilities-txt/blob/main/adopters.md">Add yourself to the directory</a> with a pull request.</p>
-  <p class="muted">Already have an OpenAPI spec or an MCP server? Generate it — no manual authoring:</p>
+  <p>The fastest path: <a href="/implement">copy a ready prompt</a> and hand it to your AI coding agent (Claude Code, Cursor, …) — it inspects your API and writes your <code>/capabilities.txt</code> for you. Then <a href="/submit">check it</a> for conformance.</p>
+  <p class="muted">Prefer to do it by hand? 1. List the capabilities your site exposes. 2. Write them into <code>/capabilities.txt</code> using the format above. 3. Optionally publish <code>/.well-known/capabilities.json</code>. 4. <a href="https://github.com/capabilityhostprotocol/capabilities-txt/blob/main/adopters.md">Add yourself to the directory</a> with a pull request.</p>
+  <p class="muted">Already have an OpenAPI spec? Generate it — no manual authoring:</p>
   <pre><code># from an OpenAPI description
 python tools/from_openapi.py https://api.yoursite.com/openapi.json &gt; capabilities.txt
 
@@ -216,10 +136,13 @@ curl -s https://yoursite.com/capabilities.txt | python tools/validate.py -</code
   <p>A proposal with a working reference, not a finished standard — and it's better for your feedback. <a href="https://github.com/capabilityhostprotocol/capabilities-txt">Open an issue or PR</a>.</p>
   <p class="muted">Spec &amp; site text: CC BY 4.0 · tooling: Apache-2.0 · "capabilities.txt" is a free, open convention (no trademark). © 2026 Project Auxo, Inc. and contributors.</p>
 </footer>
+`;
 
-</div>
-<!-- Vercel Web Analytics (enable "Web Analytics" for this project in the Vercel dashboard) -->
-<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
-<script defer src="/_vercel/insights/script.js"></script>
-</body>
-</html>
+export default function Home() {
+  return (
+    <div className="wrap">
+      <Nav />
+      <div dangerouslySetInnerHTML={{ __html: BODY }} />
+    </div>
+  );
+}

@@ -4,3 +4,8 @@
 __pycache__/
 *.pyc
 node_modules/
+
+# next
+.next/
+next-env.d.ts
+*.tsbuildinfo
