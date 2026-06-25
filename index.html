@@ -200,10 +200,14 @@ curl -s https://yoursite.com/capabilities.txt | python tools/validate.py -</code
   <p class="muted">OpenAPI describes the shape of an HTTP API in detail. capabilities.txt is a one-screen, human-and-agent-readable advertisement of <em>what you can do</em> — published at a well-known path, framework-agnostic, and able to point at <em>any</em> invocation method (MCP, HTTP, gRPC). You can generate one <em>from</em> OpenAPI.</p>
   <h3>Isn't this just llms.txt for actions?</h3>
   <p class="muted">Essentially, yes — and that's the point. llms.txt says what's worth <em>reading</em>; capabilities.txt says what you can <em>do</em>. Same spirit, the next layer.</p>
+  <h3>Isn't <code>llms.txt</code> + <code>mcp.json</code> already enough?</h3>
+  <p class="muted">They cover different things, and both assume more than this does. <code>llms.txt</code> is for <em>reading</em>, not actions. An <code>mcp.json</code> advertises that you run an <em>MCP server</em> — which means (a) you have to run one, and (b) discovery is connection-first: a client connects to learn the tools. capabilities.txt is invocation-agnostic (it can point at an MCP server, a plain HTTP API, anything) and <em>static</em> — an agent or even a search engine reads it with no connection and no MCP client. Most sites have a REST API and no MCP server; capabilities.txt works for them too. They <em>compose</em>: capabilities.txt is the public catalog; <code>mcp.json</code> is one of the endpoints it hands off to.</p>
   <h3>Do I need CHP to use it?</h3>
   <p class="muted">No. capabilities.txt stands alone — publish one today, point it at whatever you already run. CHP is where it leads <em>if</em> you need governance, permissions, and provable evidence for the actions.</p>
   <h3>Won't this expose me to abuse?</h3>
   <p class="muted">It only advertises what you already expose; it grants nothing. Authentication, rate limits, and authorization stay on your invocation endpoint. Declaring a capability is not the same as leaving it open.</p>
+  <h3>Isn't this just another file nobody needs?</h3>
+  <p class="muted">It's deliberately minimal and complementary — it fills the one gap none of the others do (what a host can <em>do</em>) and hands off to whatever you already run rather than replacing it. The cost is an afternoon, or zero if you generate it from your OpenAPI. The result is fewer bespoke, per-vendor integrations, not more files to maintain.</p>
   <h3>Will agents actually use it?</h3>
   <p class="muted">Agentic and IDE tooling already fetches well-known files like llms.txt. capabilities.txt is the same cheap, agent-readable infrastructure — for action, not just reading. It's a proposal; adoption is the work, and your feedback shapes it.</p>
 </section>
@@ -214,5 +218,8 @@ curl -s https://yoursite.com/capabilities.txt | python tools/validate.py -</code
 </footer>
 
 </div>
+<!-- Vercel Web Analytics (enable "Web Analytics" for this project in the Vercel dashboard) -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
