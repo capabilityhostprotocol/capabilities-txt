@@ -1,16 +1,25 @@
 # capabilities.txt
 
-> capabilitiestxt.org — home of the capabilities.txt convention. This is a
-> documentation host: it serves the specification, examples, and open-source
-> tooling. The capabilities below are provided as open-source CLI / MCP tools,
-> not hosted invocation endpoints.
+> capabilitiestxt.org — home of the capabilities.txt convention, and the live
+> registry + discovery engine for it. The capabilities below are real, hosted
+> HTTP endpoints (and an MCP server) — this file is its own dogfood.
 > Structured form: https://capabilitiestxt.org/.well-known/capabilities.json
+> Invocation: HTTP at the paths noted, plus an MCP server at https://capabilitiestxt.org/api/mcp
 > Where invocation, governance, and evidence go next: https://capabilityhostprotocol.com
+
+## Registry
+
+### capabilities.txt registry (capabilities-txt)
+
+- registry.check (v0.1.0) — Check a capabilities.txt for conformance; returns a grade + recommendations (POST /api/check, body {"url"})
+- registry.register (v0.1.0) — List a conformant site in the public directory (POST /api/register, body {"url"})
+- registry.discover (v0.1.0) — Find which registered sites can do something (GET /api/discover?q=<keyword>)
+- registry.badge (v0.1.0) — Get a site's conformance badge as SVG (GET /api/badge?domain=<domain>)
 
 ## Tooling
 
-### capabilities-txt tools (capabilities-txt)
+### Open-source CLI tools (capabilities-txt)
 
-- capabilities.validate (v0.1.0) — Validate a capabilities.txt file
-- capabilities.generate_from_openapi (v0.1.0) — Generate a capabilities.txt from an OpenAPI document
-- capabilities.resolve (v0.1.0) — Fetch and parse any site's capabilities.txt
+- tools.validate (v0.1.0) — Validate a capabilities.txt file (CLI)
+- tools.generate_from_openapi (v0.1.0) — Generate a capabilities.txt from an OpenAPI document (CLI)
+- tools.resolve (v0.1.0) — Fetch and parse any site's capabilities.txt (CLI / MCP)
