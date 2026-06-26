@@ -1,0 +1,24 @@
+name: 'capabilities.txt'
+description: 'Generate a capabilities.txt from your OpenAPI spec so agents can discover what your site can do.'
+author: 'Project Auxo, Inc.'
+branding:
+  icon: 'list'
+  color: 'blue'
+inputs:
+  openapi:
+    description: 'Path or URL to your OpenAPI (JSON) document.'
+    required: true
+  output:
+    description: 'Where to write capabilities.txt.'
+    required: false
+    default: 'public/capabilities.txt'
+  structured:
+    description: 'Also write the structured /.well-known/capabilities.json form (true/false).'
+    required: false
+    default: 'false'
+outputs:
+  capabilities:
+    description: 'Number of capabilities generated.'
+runs:
+  using: 'node20'
+  main: 'index.js'

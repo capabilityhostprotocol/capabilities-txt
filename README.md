@@ -99,11 +99,22 @@ hands off invocation.
 
 ## Adopt it
 
-**Fastest:** copy the prompt at [capabilitiestxt.org/implement](https://capabilitiestxt.org/implement)
-and hand it to your AI coding agent (Claude Code, Cursor, …) — it inspects your API
-and writes your `capabilities.txt` for you. Then **check it** at
-[capabilitiestxt.org/submit](https://capabilitiestxt.org/submit) for a conformance
-grade, fixes, and a badge.
+**Fastest (no spec):** copy the prompt at [capabilitiestxt.org/implement](https://capabilitiestxt.org/implement)
+and hand it to your AI coding agent — it writes your `capabilities.txt` from your code.
+
+**Have an OpenAPI spec?** [Generate it in your browser](https://capabilitiestxt.org/generate)
+(paste the URL) — or keep it current automatically in CI with the
+[GitHub Action](action/):
+
+```yaml
+- uses: capabilityhostprotocol/capabilities-txt/action@main
+  with:
+    openapi: https://api.yoursite.com/openapi.json
+    output: public/capabilities.txt
+```
+
+Then **check it** at [capabilitiestxt.org/submit](https://capabilitiestxt.org/submit)
+for a grade, fixes, and a badge — and it’s discoverable in the directory + map.
 
 By hand:
 
