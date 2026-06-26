@@ -62,7 +62,7 @@ export default function ReportView({ report, sourceUrl }: { report: Report; sour
           <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
             <code>{badgeMd}</code>
           </pre>
-          <CopyButton text={badgeMd} label="Copy badge markdown" />
+          <CopyButton text={badgeMd} label="Copy badge markdown" event="copy_badge" />
 
           <h2>List it</h2>
           <p className="muted">Add this site to the public directory so agents (and people) can discover what it can do.</p>

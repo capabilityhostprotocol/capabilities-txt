@@ -25,7 +25,7 @@ export default function ImplementPage() {
       </header>
 
       <div style={{ margin: '6px 0 14px' }}>
-        <CopyButton text={AGENT_PROMPT} label="Copy the prompt" />
+        <CopyButton text={AGENT_PROMPT} label="Copy the prompt" event="copy_prompt" />
       </div>
       <pre style={{ whiteSpace: 'pre-wrap' }}>
         <code>{AGENT_PROMPT}</code>

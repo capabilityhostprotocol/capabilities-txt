@@ -83,10 +83,10 @@ const BODY = `
 
 <section id="adopt">
   <h2>Adopt it</h2>
-  <p>The fastest path: <a href="/implement">copy a ready prompt</a> and hand it to your AI coding agent (Claude Code, Cursor, …) — it inspects your API and writes your <code>/capabilities.txt</code> for you. Then <a href="/submit">check it</a> for conformance.</p>
-  <p class="muted">Prefer to do it by hand? 1. List the capabilities your site exposes. 2. Write them into <code>/capabilities.txt</code> using the format above. 3. Optionally publish <code>/.well-known/capabilities.json</code>. 4. <a href="https://github.com/capabilityhostprotocol/capabilities-txt/blob/main/adopters.md">Add yourself to the directory</a> with a pull request.</p>
-  <p class="muted">Already have an OpenAPI spec? Generate it — no manual authoring:</p>
-  <pre><code># from an OpenAPI description
+  <p>Two near-zero-effort paths: <a href="/generate">generate it from your OpenAPI</a> in ten seconds, or <a href="/implement">copy a prompt</a> and hand it to your AI coding agent — it writes your <code>/capabilities.txt</code> from your real API. Then <a href="/submit">check it</a> for a grade and a badge, and it’s discoverable in the <a href="/directory">directory</a> + <a href="/map">map</a>.</p>
+  <p class="muted">Prefer to do it by hand? 1. List the capabilities your site exposes. 2. Write them into <code>/capabilities.txt</code> using the format above. 3. Optionally publish <code>/.well-known/capabilities.json</code>. 4. <a href="/submit">check + list it</a>.</p>
+  <p class="muted">From the command line instead:</p>
+  <pre><code># generate from an OpenAPI description
 python tools/from_openapi.py https://api.yoursite.com/openapi.json &gt; capabilities.txt
 
 # validate any capabilities.txt

@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { track } from '@vercel/analytics';
 
 export default function RegisterButton({ url }: { url: string }) {
   const [state, setState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
@@ -17,6 +18,7 @@ export default function RegisterButton({ url }: { url: string }) {
       if (res.ok) {
         setState('done');
         setMsg('Listed in the directory ✓');
+        track('register', { grade: String(d.grade ?? '') });
       } else {
         setState('error');
         setMsg(d.error || 'Could not list this site.');
