@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { track } from '@vercel/analytics';
 import Nav from '../components/Nav';
 import ReportView from '../components/ReportView';
 import type { Report } from '../lib/conformance';
@@ -24,8 +25,13 @@ export default function SubmitPage() {
         body: JSON.stringify({ url }),
       });
       const data = await res.json();
-      if (!res.ok) setError(data.error || 'Check failed.');
-      else setResult(data as Result);
+      if (!res.ok) {
+        setError(data.error || 'Check failed.');
+        track('check_failed');
+      } else {
+        setResult(data as Result);
+        track('check', { grade: (data as Result).grade });
+      }
     } catch {
       setError('Network error — try again.');
     }

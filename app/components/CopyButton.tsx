@@ -1,7 +1,8 @@
 'use client';
 import { useState } from 'react';
+import { track } from '@vercel/analytics';
 
-export default function CopyButton({ text, label = 'Copy' }: { text: string; label?: string }) {
+export default function CopyButton({ text, label = 'Copy', event }: { text: string; label?: string; event?: string }) {
   const [copied, setCopied] = useState(false);
   return (
     <button
@@ -10,6 +11,7 @@ export default function CopyButton({ text, label = 'Copy' }: { text: string; lab
         try {
           await navigator.clipboard.writeText(text);
           setCopied(true);
+          if (event) track(event);
           setTimeout(() => setCopied(false), 1600);
         } catch {
           /* clipboard unavailable */
