@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.capabilityhostprotocol/capabilities-txt-registry",
+  "description": "Discover what websites across the agentic web can do — query the capabilities.txt registry.",
+  "version": "0.1.0",
+  "websiteUrl": "https://capabilitiestxt.org",
+  "repository": {
+    "url": "https://github.com/capabilityhostprotocol/capabilities-txt",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://capabilitiestxt.org/api/mcp"
+    }
+  ]
+}
