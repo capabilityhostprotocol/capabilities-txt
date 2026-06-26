@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://capabilitiestxt.org/</loc></url>
+  <url><loc>https://capabilitiestxt.org/generate</loc></url>
+  <url><loc>https://capabilitiestxt.org/implement</loc></url>
+  <url><loc>https://capabilitiestxt.org/compare</loc></url>
+  <url><loc>https://capabilitiestxt.org/directory</loc></url>
+  <url><loc>https://capabilitiestxt.org/map</loc></url>
   <url><loc>https://capabilitiestxt.org/llms.txt</loc></url>
   <url><loc>https://capabilitiestxt.org/capabilities.txt</loc></url>
   <url><loc>https://capabilitiestxt.org/examples/capabilityhostprotocol.com.txt</loc></url>
