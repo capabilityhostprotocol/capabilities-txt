@@ -63,6 +63,7 @@ const BODY = `
     <tr><td class="accent"><code>capabilities.txt</code></td><td class="accent">What can this host <em>do</em>?</td><td class="accent">Agents acting</td></tr>
   </table>
   <p class="muted">It's <strong>not</strong> a replacement for MCP or an API spec. MCP is a stateful connection-and-invocation protocol; OpenAPI describes an HTTP API. <code>capabilities.txt</code> is the layer <em>before</em> invocation — a static, public, crawlable advertisement an agent can read with no live connection, that points to your MCP server or API for the actual call. Discovery and invocation are different jobs; capabilities.txt does discovery and hands off invocation.</p>
+  <p><a href="/compare">Full comparison: capabilities.txt vs llms.txt, mcp.json &amp; OpenAPI →</a></p>
 </section>
 
 <section id="example">
