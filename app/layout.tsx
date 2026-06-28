@@ -40,6 +40,25 @@ const JSON_LD = {
       url: `${BASE}/`,
       name: 'capabilities.txt',
       description: 'An open convention for a website to declare what it can do — the capabilities an agent can discover and invoke.',
+      // Dogfood: our own real capabilities as schema.org Actions (the vocabulary agents + search already understand).
+      potentialAction: [
+        {
+          '@type': 'SearchAction',
+          name: 'Discover capabilities across the web',
+          target: { '@type': 'EntryPoint', urlTemplate: `${BASE}/api/discover?q={query}` },
+          'query-input': 'required name=query',
+        },
+        {
+          '@type': 'Action',
+          name: 'Check a capabilities.txt for conformance',
+          target: { '@type': 'EntryPoint', urlTemplate: `${BASE}/api/check`, httpMethod: 'POST', contentType: 'application/json' },
+        },
+        {
+          '@type': 'Action',
+          name: 'List a site in the registry',
+          target: { '@type': 'EntryPoint', urlTemplate: `${BASE}/api/register`, httpMethod: 'POST', contentType: 'application/json' },
+        },
+      ],
     },
     {
       '@type': 'TechArticle',
