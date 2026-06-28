@@ -1,5 +1,34 @@
-# capabilities.txt — agents and crawlers welcome.
+# capabilities.txt — agents and crawlers welcome (training AND search).
+# We want this convention in both the model training corpora and the live answer
+# engines, so every AI crawler is explicitly allowed. (Adopters: do the same.)
+
 User-agent: *
+Allow: /
+
+# AI training crawlers
+User-agent: GPTBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+
+# AI search / answer-engine crawlers
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: Bingbot
 Allow: /
 
 Sitemap: https://capabilitiestxt.org/sitemap.xml
