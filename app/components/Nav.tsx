@@ -4,6 +4,7 @@ export default function Nav() {
       <a className="brand" href="/">capabilities.txt</a>
       <a href="/#format">Spec</a>
       <a href="/generate">Generate</a>
+      <a href="/guides/agent-ready-api">Guides</a>
       <a href="/connect">Connect</a>
       <a href="/submit">Check</a>
       <a href="/directory">Directory</a>
