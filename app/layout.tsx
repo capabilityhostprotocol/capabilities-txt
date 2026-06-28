@@ -40,6 +40,11 @@ const JSON_LD = {
       url: `${BASE}/`,
       name: 'capabilities.txt',
       description: 'An open convention for a website to declare what it can do — the capabilities an agent can discover and invoke.',
+      // Link the page's subject entity to its Wikidata item (entity grounding for answer engines + training).
+      sameAs: [
+        'https://www.wikidata.org/wiki/Q140374155',
+        'https://github.com/capabilityhostprotocol/capabilities-txt',
+      ],
       // Dogfood: our own real capabilities as schema.org Actions (the vocabulary agents + search already understand).
       potentialAction: [
         {
