@@ -3,6 +3,7 @@ export default function Nav() {
     <nav className="nav">
       <a className="brand" href="/">capabilities.txt</a>
       <a href="/#format">Spec</a>
+      <a href="/report">Report card</a>
       <a href="/generate">Generate</a>
       <a href="/guides/agent-ready-api">Guides</a>
       <a href="/connect">Connect</a>
