@@ -212,12 +212,26 @@ export async function gradeAgentReadiness(input: string): Promise<AgentReadiness
 
   // Invocable — OpenAPI + MCP
   const openapiUrl = await firstHit(
-    [`${origin}/openapi.json`, `${origin}/.well-known/openapi.json`, `${origin}/swagger.json`, `${origin}/api/openapi.json`, `${origin}/openapi.yaml`],
-    (t) => /"openapi"|"swagger"|^openapi:/m.test(t),
+    [
+      `${origin}/openapi.json`, `${origin}/.well-known/openapi.json`, `${origin}/swagger.json`,
+      `${origin}/api/openapi.json`, `${origin}/openapi.yaml`, `${origin}/v1/openapi.json`,
+      `${origin}/api-docs.json`, `${origin}/swagger/v1/swagger.json`, `${origin}/api/schema`,
+      // API-mature firms often host the spec on a docs/api subdomain, not the apex.
+      `https://api.${host}/openapi.json`, `https://docs.${host}/openapi.json`, `https://developers.${host}/openapi.json`,
+    ],
+    (t) => /"openapi"\s*:|"swagger"\s*:|^openapi:\s*["']?\d/m.test(t),
   );
-  const openapiSignal: Signal = openapiUrl
-    ? { id: 'openapi', label: 'OpenAPI discoverable', category: 'invocable', status: 'pass', earned: 18, max: 18, detail: `Found at ${openapiUrl.replace(origin, '')}` }
-    : { id: 'openapi', label: 'OpenAPI discoverable', category: 'invocable', status: 'fail', earned: 0, max: 18, detail: 'No OpenAPI document found at common paths', fix: 'Expose an OpenAPI description so agents (and our generator) can map your API.' };
+  // Fairness: API-mature sites often host their spec off the well-known paths. If the
+  // homepage clearly references an API reference / OpenAPI, give partial credit rather than 0.
+  const homeLinksApi = !!(home?.ok && /openapi|swagger|redoc|\/api-docs|api[\s-]?reference|\/reference\/|\/docs\/api/i.test(home.text));
+  let openapiSignal: Signal;
+  if (openapiUrl) {
+    openapiSignal = { id: 'openapi', label: 'OpenAPI discoverable', category: 'invocable', status: 'pass', earned: 18, max: 18, detail: `Found at ${openapiUrl.replace(origin, '')}` };
+  } else if (homeLinksApi) {
+    openapiSignal = { id: 'openapi', label: 'OpenAPI discoverable', category: 'invocable', status: 'partial', earned: 9, max: 18, detail: 'API reference linked from the homepage, but no OpenAPI at a well-known path', fix: 'Publish your OpenAPI at /openapi.json or /.well-known/openapi.json so agents can auto-discover it.' };
+  } else {
+    openapiSignal = { id: 'openapi', label: 'OpenAPI discoverable', category: 'invocable', status: 'fail', earned: 0, max: 18, detail: 'No OpenAPI document found at common paths', fix: 'Expose an OpenAPI description so agents (and our generator) can map your API.' };
+  }
 
   const mcpHit = (mcp1?.ok && mcp1.text.trimStart().startsWith('{')) || (mcp2?.ok && mcp2.text.trimStart().startsWith('{'));
   const mcpSignal: Signal = mcpHit
