@@ -1,0 +1,15 @@
+{
+  "name": "capabilities-txt-registry",
+  "description": "Discover capabilities.txt files across the web, check conformance, and look up what a site can do.",
+  "version": "0.1.0",
+  "documentation": "https://capabilitiestxt.org/connect",
+  "server": {
+    "url": "https://capabilitiestxt.org/api/mcp",
+    "transport": "http"
+  },
+  "tools": [
+    { "name": "discover_capabilities", "description": "Search capabilities across registered sites." },
+    { "name": "list_sites", "description": "List sites with a published capabilities.txt." },
+    { "name": "get_site", "description": "Get one site's capabilities and conformance grade." }
+  ]
+}

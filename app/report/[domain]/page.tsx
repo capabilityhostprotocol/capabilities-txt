@@ -17,6 +17,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: `Is ${host} agent-ready? — Agent-Readiness Report`,
     description: `An agent-readiness report card for ${host}: how prepared it is for AI agents to discover, invoke, and trust it — scored across the agentic-web stack.`,
     alternates: { canonical: `/report/${host}` },
+    // Don't index on-demand reports for arbitrary third-party domains (scaled-content
+    // hygiene). Curated/claimed reports can opt back into indexing later.
+    robots: { index: false, follow: true },
   };
 }
 
