@@ -67,6 +67,20 @@ create table if not exists suppression (
   added_at   timestamptz not null default now()
 );
 
+-- First-party analytics events (report views, generates, claim-intent, page views).
+-- Doubles as the inbound-signal feed: a /report/<domain> view = a warm lead.
+create table if not exists events (
+  id       bigserial primary key,
+  ts       timestamptz not null default now(),
+  event    text not null,                         -- report_view | generate | register | claim_intent | ...
+  domain   text,                                  -- subject domain (e.g. the graded domain)
+  path     text,
+  props    jsonb not null default '{}',
+  session  text                                   -- anonymous session id
+);
+
+create index if not exists idx_events_event on events (event, ts);
+create index if not exists idx_events_domain on events (domain) where domain is not null;
 create index if not exists idx_targets_status on targets (status);
 create index if not exists idx_attempts_domain on outreach_attempts (domain);
 create index if not exists idx_attempts_status on outreach_attempts (status);

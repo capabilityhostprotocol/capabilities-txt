@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import { after } from 'next/server';
 import Nav from '../../components/Nav';
 import { gradeAgentReadiness } from '../../lib/agentReadiness';
+import { recordEvent } from '../../lib/growthDb';
 
 export const dynamic = 'force-dynamic';
 
@@ -31,6 +33,11 @@ export default async function ReportPage({ params }: Params) {
   const host = cleanHost(domain);
   const report = await gradeAgentReadiness(host);
   const fetchedDate = report.fetchedAt.slice(0, 10);
+
+  // First-party inbound signal: someone graded this domain. A self-grade is a warm lead.
+  after(() =>
+    recordEvent({ event: 'report_view', domain: host, path: `/report/${host}`, props: { grade: report.grade, score: report.score } }),
+  );
 
   const ld = {
     '@context': 'https://schema.org',
